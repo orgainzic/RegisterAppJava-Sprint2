@@ -1,0 +1,65 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Transaction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/transaction.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="primary-message">Transaction</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div class="transactionProductWrapper">
+			<table id="transactionProducts">
+				<tbody>
+					<tr>
+						<td class="label">Search for a Product:</td>
+						<td>
+                            <input id="productId" type="search" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+                            <button id="addButton" type="button" class="action">Add Product</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="transactionActionsWrapper" th:classappend="not ${#strings.isEmpty(errorMessage)} ? hidden : ''">
+            <br />
+            <button id="updateButton" type="button" class="action">Update Cart</button>
+            <button id="removeButton" type="button" class="action">Remove from Cart</button>
+            <button id="checkoutButton" type="button" class="action">Checkout</button>
+            <button id="cancelButton" type="button" class="action">Cancel Transcation</button>
+		</div>
+
+		<div id="transactionSavedAlertModal" class="modal animate-opacity-show">
+			<div class="modal-content">
+				<div class="container gray-blue">
+					<h1>
+						<span>Product Added</span><br />
+						<span>To Cart</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer" th:classappend="${employee.isInitialEmployee} ? hidden : ''">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+
+</body>
+
+</html>
