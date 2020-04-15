@@ -1,18 +1,44 @@
-/*
-document.addEventListener("DOMContentLoaded", function(event) {
-    getaddButton().addEventListener(
-        "click", () => {addProduct;});
-    getupdateButton().addEventListener(
-        "click", () => {updateQuantity;});
-    getremoveButton().addEventListener(
-        "click", () => {removeProduct;});
-    getcheckoutButton().addEventListener(
-        "click", () => {submitTransaction;});
-    getcancelButton().addEventListener(
-        "click", () => {cancelTransaction;});
-});
-*/
+document.addEventListener("DOMContentLoaded", () => {
+	document.getElementById("searchButton")
+        .addEventListener("click", searchActionClick);
 
+        const searchProductElement =
+		getSearchProductElement();
+	    searchProductElement.focus();
+	    searchProductElement.select();
+});
+
+function searchActionClick(event){
+    if (!validateSearch()) {
+		return;
+    }
+    else{
+    const searchId = getSearchId();
+    const searchIdIsDefined = (searchId.trim() !== "");
+    const saveActionUrl = ("/api/transaction");
+    ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
+        saveActionElement.disabled = false;
+
+        if (isSuccessResponse(callbackResponse)) {
+            completeSaveAction(callbackResponse);
+        }
+    });}
+}
+
+function getSearchId(){
+    return document.getElementById("searchProduct")
+}
+
+function validateSearch(){
+    if(searchproductElement.value.trim() === "") {
+		displayError("Please enter a product to search for.");
+		searchproductElement.focus();
+		searchproductElement.select();
+		return false;
+    }
+    return true;
+    
+}
 
 function getClickedListItemElement(target) {
     let clickedElement = target;
