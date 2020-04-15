@@ -13,7 +13,12 @@
 </head>
 <body>
     <div id="main" class="main">
-        <button id="addButton" type="button" class="action">Add Product</button>
+		<div class="searchWrapper">
+			<form action="/transaction" method="POST" >
+				<input type="text" name="searchProduct" placeholder="Search for a product">
+				<button id="addProduct" type="button" class="action">Search</button>
+			</form>
+		</div>
 
 		<br />
         <br />
@@ -22,7 +27,7 @@
             <ul id="productsListing" class="products">
                 <li th:each="product : ${products}">
                     <span class="productlookupCodeDisplay" th:text="${product.lookupCode}">Product Lookup Code</span>
-                    <br /><span>&nbsp;&nbsp;1</span>
+                    <br /><span>&nbsp;&nbsp;</span>
                 </li>
             </ul>
         </div>
