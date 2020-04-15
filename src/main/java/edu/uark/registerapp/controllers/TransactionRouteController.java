@@ -17,8 +17,8 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
 
 @Controller
-@RequestMapping(value = "/checkout")
-public class CheckoutRouteController extends BaseRouteController {
+@RequestMapping(value = "/transaction")
+public class TransactionRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
 		@RequestParam final Map<String, String> queryParameters,
@@ -28,8 +28,8 @@ public class CheckoutRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
-
-			try {
+		/*
+				try {
 				modelAndView.addObject(
 					//ViewModelNames.PRODUCTS.getValue(),  change to checkout viewmodel or use this one
 					//this.productsQuery.execute());   change to checking the cart command
@@ -41,6 +41,7 @@ public class CheckoutRouteController extends BaseRouteController {
 					//ViewModelNames.PRODUCTS.getValue(), change to checkout viewmodel or use this one
 					//(new Product[0]));  change to checkout model or use this one
 			}
+		*/
 
 			return modelAndView;
 	}
