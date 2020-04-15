@@ -1,0 +1,56 @@
+div.main {
+	padding-top: 0px;
+	text-align: center
+}
+​
+div.productsWrapper {
+	display: inline-block;
+}
+​
+ul.products {
+	margin: 0 0 2em 0;
+	list-style-type: none;
+	padding: 0;
+	width: 15em;
+}
+​
+ul.products > li {
+	cursor: pointer;
+	background-color: #EEE;
+	margin: .5em;
+	padding: .3em;
+	height: 2.5em;
+	border-radius: 4px;
+	text-align: left;
+}
+​
+ul.products > li:hover {
+	color: #607D8B;
+	background-color: #DDD;
+	left: .1em;
+}
+​
+button.action {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    color: #000000;
+    border: solid;
+    padding: 10px;
+    background-color: #FFFFFF;
+    cursor: default;
+	text-decoration: none;
+}
+​
+button.action:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #000000;
+}
