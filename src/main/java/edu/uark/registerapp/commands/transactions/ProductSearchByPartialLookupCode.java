@@ -30,10 +30,10 @@ public class ProductSearchByPartialLookupCode implements ResultCommandInterface<
 
     // Properties
     private String partialLookupCode;
-    public String getLookupCode() {
+    public String getPartialLookupCode() {
         return this.partialLookupCode;
     }
-    public ProductSearchByPartialLookupCode setLookupCode(final String partialLookupCode) {
+    public ProductSearchByPartialLookupCode setPartialLookupCode(final String partialLookupCode) {
         this.partialLookupCode = partialLookupCode;
         return this;
     }
