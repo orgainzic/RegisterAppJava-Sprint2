@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", function(event) {
     getaddButton().addEventListener(
         "click", () => {addProduct;});
@@ -9,14 +10,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "click", () => {submitTransaction;});
     getcancelButton().addEventListener(
         "click", () => {cancelTransaction;});
-
 });
+*/
+
+
+function getClickedListItemElement(target) {
+    let clickedElement = target;
+    while (clickedElement.tagName !== "LI") {
+        clickedElement = clickedElement.parentElement;
+    }
+    return clickedElement;
+}
 
 function addProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     const nextEntryId = (unorderedListElement.childElementCount + 1).toString();
     const listItemElement = document.createElement("li");
-    listItemElement.addEventListener("click", onListItemClicked);
+    listItemElement.addEventListener("click", removeProduct);
     const lookupCodeDisplayElement = document.createElement("span");
     lookupCodeDisplayElement.innerHTML = ("Product Lookup Code " + nextEntryId);
     lookupCodeDisplayElement.classList.add("lookupCodeDisplay");
@@ -29,25 +39,26 @@ function addProduct(event) {
     unorderedListElement.appendChild(listItemElement);
 }
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("addListItemAction")
-        .addEventListener("click", onAddListItemActionClicked);
+    document.getElementById("addButton")
+        .addEventListener("click", addProduct);
     const listItemElements = document.getElementById("productsListing")
         .querySelectorAll("li");
     for (let i = 0; i < listItemElements.length; i++) {
-        listItemElements[i].addEventListener("click", onListItemClicked);
+        listItemElements[i].addEventListener("click", removeProduct);
     }
 });
-
+/*
 function updateQuantity(event) {
 
 }
+*/
 
 function removeProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     unorderedListElement.removeChild(
         getClickedListItemElement(event.target));
 }
-
+/*
 function submitTransaction(event) {
 
 }
@@ -76,3 +87,4 @@ function checkoutButton() {
 function cancelButton() {
     return document.getElementById("cancelButton");
 }
+*/
