@@ -20,8 +20,8 @@
 ​
         <div class="productsWrapper">
             <ul id="productsListing" class="products">
-                <li>
-                    <span class="lookupCodeDisplay" th:text="${product.lookupCode}">Product Lookup Code</span>
+                <li th:each="product : ${products}">
+                    <span class="productlookupCodeDisplay" th:text="${product.lookupCode}">Product Lookup Code</span>
                     <br /><span>&nbsp;&nbsp;1</span>
                 </li>
             </ul>
