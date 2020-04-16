@@ -1,40 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("searchButton")
+	document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
-    const searchProductElement =
-        getSearchProductElement();
-    searchProductElement.focus();
-    searchProductElement.select();
+
+        
+	    searchProductElement.focus();document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("searchButton")
+                .addEventListener("click", searchActionClick);
+            const searchProductElement =
+                getSearchProductElement();
+            searchProductElement.focus();
+            searchProductElement.select();
+        });
+        function searchActionClick(event){
+            if (!validateSearch()){
+                return;
+            }
+            const saveActionUrl = ("/transaction/search");
+            const saveSearchRequest = {
+                searchId: getSearchId()
+            }
+            ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
+                if (isSuccessResponse(callbackResponse)) {
+                    completeSearchAction(callbackResponse);
+                }
+            });
+        }
+        function getSearchId(){
+            return document.getElementById("searchProduct").value;
+        }
+        function getSearchProductElement(){
+            return document.getElementById("searchProduct");
+        }
+        function validateSearch(){
+            const searchProductElement = getSearchProductElement();
+            if(searchProductElement.value.trim() === "") {
+                displayError("Please enter a product to search for.");
+                searchProductElement.focus();
+                searchProductElement.select();
+                return false;
+            }
+            return true;
+        }
+        function completeSearchAction(callbackResponse) {
+            if (callbackResponse.data == null) {
+                return;
+            }
+            if ((callbackResponse.data.redirectUrl != null)
+                && (callbackResponse.data.redirectUrl !== "")) {
+                window.location.replace(callbackResponse.data.redirectUrl);
+                return;
+            }
+        }
+	    searchProductElement.select();
 });
+
 function searchActionClick(event){
     if (!validateSearch()) {
-        return;
+		return;
     }
     else{
-        const saveActionUrl = ("/transaction/search");
-        const saveSearchRequest = {
-            searchId: getSearchId()
+    const searchId = getSearchId();
+    const searchIdIsDefined = (searchId.trim() !== "");
+    const saveActionUrl = ("/transaction/search");
+    
+    ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
+        saveActionElement.disabled = false;
+
+        if (isSuccessResponse(callbackResponse)) {
+            completeSaveAction(callbackResponse);
         }
-        ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
-            saveActionElement.disabled = false;
-            if (isSuccessResponse(callbackResponse)) {
-                completeSaveAction(callbackResponse);
-            }
-        });}
+    });}
 }
+
 function getSearchId(){
     return document.getElementById("searchProduct")
 }
+
 function validateSearch(){
-    if(searchproductElement.value.trim() === "") {
-        displayError("Please enter a product to search for.");
-        searchproductElement.focus();
-        searchproductElement.select();
-        return false;
+    if(searchProductElement.value.trim() === "") {
+		displayError("Please enter a product to search for.");
+		searchProductElement.focus();
+		searchProductElement.select();
+		return false;
     }
     return true;
+    
 }
-
+/*
 function getClickedListItemElement(target) {
     let clickedElement = target;
     while (clickedElement.tagName !== "LI") {
@@ -68,20 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
         listItemElements[i].addEventListener("click", removeProduct);
     }
 });
-
-function removeProduct(event) {
-    const unorderedListElement = document.getElementById("productsListing");
-    unorderedListElement.removeChild(
-        getClickedListItemElement(event.target));
-}
-
 /*
 function updateQuantity(event) {
 
 }
 */
-
-
+/*
+function removeProduct(event) {
+    const unorderedListElement = document.getElementById("productsListing");
+    unorderedListElement.removeChild(
+        getClickedListItemElement(event.target));
+}*/
 /*
 function submitTransaction(event) {
 
