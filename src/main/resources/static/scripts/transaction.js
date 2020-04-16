@@ -1,16 +1,18 @@
+/*
 document.addEventListener("DOMContentLoaded", function(event) {
-    /*getaddButton().addEventListener(
+    getaddButton().addEventListener(
         "click", () => {addProduct;});
     getupdateButton().addEventListener(
         "click", () => {updateQuantity;});
-    //getremoveButton().addEventListener(
-    //    "click", () => {removeProduct;});
+    getremoveButton().addEventListener(
+        "click", () => {removeProduct;});
     getcheckoutButton().addEventListener(
         "click", () => {submitTransaction;});
     getcancelButton().addEventListener(
         "click", () => {cancelTransaction;});
-*/
 });
+*/
+
 
 function getClickedListItemElement(target) {
     let clickedElement = target;
@@ -45,17 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
         listItemElements[i].addEventListener("click", removeProduct);
     }
 });
-
+/*
 function updateQuantity(event) {
 
 }
+*/
 
 function removeProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     unorderedListElement.removeChild(
         getClickedListItemElement(event.target));
 }
-
+/*
 function submitTransaction(event) {
 
 }
@@ -84,3 +87,4 @@ function checkoutButton() {
 function cancelButton() {
     return document.getElementById("cancelButton");
 }
+*/
