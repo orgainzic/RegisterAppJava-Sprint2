@@ -15,7 +15,7 @@ function searchActionClick(event){
     else{
     const searchId = getSearchId();
     const searchIdIsDefined = (searchId.trim() !== "");
-    const saveActionUrl = ("/api/transaction");
+    const saveActionUrl = ("/transaction");
     ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
         saveActionElement.disabled = false;
 
@@ -94,13 +94,9 @@ function cancelTransaction(event) {
 
 // Getters and setters
 
-function getaddButton() {
-    return document.getElementById("addButton");
-}
 
-function getupdateButton() {
-    return document.getElementById("updateButton");
-}
+
+
 
 function getremoveButton() {
     return document.getElementById("removeButton");
@@ -110,7 +106,4 @@ function checkoutButton() {
     return document.getElementById("checkoutButton");
 }
 
-function cancelButton() {
-    return document.getElementById("cancelButton");
-}
 */
