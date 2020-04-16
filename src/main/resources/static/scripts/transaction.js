@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+function getClickedListItemElement(target) {
+    let clickedElement = target;
+    while (clickedElement.tagName !== "LI") {
+        clickedElement = clickedElement.parentElement;
+    }
+    return clickedElement;
+}
+
 function addProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     const nextEntryId = (unorderedListElement.childElementCount + 1).toString();
