@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    getaddButton().addEventListener(
+    /*getaddButton().addEventListener(
         "click", () => {addProduct;});
     getupdateButton().addEventListener(
         "click", () => {updateQuantity;});
-    getremoveButton().addEventListener(
-        "click", () => {removeProduct;});
+    //getremoveButton().addEventListener(
+    //    "click", () => {removeProduct;});
     getcheckoutButton().addEventListener(
         "click", () => {submitTransaction;});
     getcancelButton().addEventListener(
         "click", () => {cancelTransaction;});
-
+*/
 });
 
 function getClickedListItemElement(target) {
@@ -24,7 +24,7 @@ function addProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     const nextEntryId = (unorderedListElement.childElementCount + 1).toString();
     const listItemElement = document.createElement("li");
-    listItemElement.addEventListener("click", onListItemClicked);
+    listItemElement.addEventListener("click", removeProduct);
     const lookupCodeDisplayElement = document.createElement("span");
     lookupCodeDisplayElement.innerHTML = ("Product Lookup Code " + nextEntryId);
     lookupCodeDisplayElement.classList.add("lookupCodeDisplay");
@@ -37,12 +37,12 @@ function addProduct(event) {
     unorderedListElement.appendChild(listItemElement);
 }
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("addListItemAction")
-        .addEventListener("click", onAddListItemActionClicked);
+    document.getElementById("addButton")
+        .addEventListener("click", addProduct);
     const listItemElements = document.getElementById("productsListing")
         .querySelectorAll("li");
     for (let i = 0; i < listItemElements.length; i++) {
-        listItemElements[i].addEventListener("click", onListItemClicked);
+        listItemElements[i].addEventListener("click", removeProduct);
     }
 });
 
