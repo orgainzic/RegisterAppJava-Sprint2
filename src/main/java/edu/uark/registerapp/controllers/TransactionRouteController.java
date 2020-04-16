@@ -19,7 +19,7 @@ import edu.uark.registerapp.models.enums.EmployeeClassification;
 @Controller
 @RequestMapping(value = "/transaction")
 public class TransactionRouteController extends BaseRouteController {
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView landing(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
@@ -32,7 +32,7 @@ public class TransactionRouteController extends BaseRouteController {
 			return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView searched(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
