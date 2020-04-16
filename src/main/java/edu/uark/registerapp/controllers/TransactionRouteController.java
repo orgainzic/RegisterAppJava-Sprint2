@@ -28,20 +28,6 @@ public class TransactionRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
-		/*
-				try {
-				modelAndView.addObject(
-					//ViewModelNames.PRODUCTS.getValue(),  change to checkout viewmodel or use this one
-					//this.productsQuery.execute());   change to checking the cart command
-			} catch (final Exception e) {
-				modelAndView.addObject(
-					ViewModelNames.ERROR_MESSAGE.getValue(),
-					e.getMessage());
-				modelAndView.addObject(
-					//ViewModelNames.PRODUCTS.getValue(), change to checkout viewmodel or use this one
-					//(new Product[0]));  change to checkout model or use this one
-			}
-		*/
 
 			return modelAndView;
 	}
