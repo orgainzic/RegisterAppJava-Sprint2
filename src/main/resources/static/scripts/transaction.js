@@ -1,90 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-	document.getElementById("searchButton")
+    document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
-
-        
-	    searchProductElement.focus();document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("searchButton")
-                .addEventListener("click", searchActionClick);
-            const searchProductElement =
-                getSearchProductElement();
-            searchProductElement.focus();
-            searchProductElement.select();
-        });
-        function searchActionClick(event){
-            if (!validateSearch()){
-                return;
-            }
-            const saveActionUrl = ("/transaction/search");
-            const saveSearchRequest = {
-                searchId: getSearchId()
-            }
-            ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
-                if (isSuccessResponse(callbackResponse)) {
-                    completeSearchAction(callbackResponse);
-                }
-            });
-        }
-        function getSearchId(){
-            return document.getElementById("searchProduct").value;
-        }
-        function getSearchProductElement(){
-            return document.getElementById("searchProduct");
-        }
-        function validateSearch(){
-            const searchProductElement = getSearchProductElement();
-            if(searchProductElement.value.trim() === "") {
-                displayError("Please enter a product to search for.");
-                searchProductElement.focus();
-                searchProductElement.select();
-                return false;
-            }
-            return true;
-        }
-        function completeSearchAction(callbackResponse) {
-            if (callbackResponse.data == null) {
-                return;
-            }
-            if ((callbackResponse.data.redirectUrl != null)
-                && (callbackResponse.data.redirectUrl !== "")) {
-                window.location.replace(callbackResponse.data.redirectUrl);
-                return;
-            }
-        }
-	    searchProductElement.select();
+    const searchProductElement =
+        getSearchProductElement();
+    searchProductElement.focus();
+    searchProductElement.select();
 });
-
 function searchActionClick(event){
     if (!validateSearch()) {
-		return;
+        return;
     }
-    else{
-    const searchId = getSearchId();
-    const searchIdIsDefined = (searchId.trim() !== "");
-    const saveActionUrl = ("/transaction/search");
-    
-    ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
-        saveActionElement.disabled = false;
-
-        if (isSuccessResponse(callbackResponse)) {
-            completeSaveAction(callbackResponse);
-        }
-    });}
+    else {
+        document.getElementById("searchForm").submit();
+    }
 }
-
 function getSearchId(){
-    return document.getElementById("searchProduct")
+    return document.getElementById("searchProduct").value;
 }
-
+function getSearchProductElement(){
+    return document.getElementById("searchProduct");
+}
 function validateSearch(){
+    const searchProductElement = getSearchProductElement();
     if(searchProductElement.value.trim() === "") {
-		displayError("Please enter a product to search for.");
-		searchProductElement.focus();
-		searchProductElement.select();
-		return false;
+        displayError("Please enter a product to search for.");
+        searchProductElement.focus();
+        searchProductElement.select();
+        return false;
     }
     return true;
-    
+}
+function completeSearchAction(callbackResponse) {
+    if (callbackResponse.data == null) {
+        return;
+    }
+    if ((callbackResponse.data.redirectUrl != null)
+        && (callbackResponse.data.redirectUrl !== "")) {
+        window.location.replace(callbackResponse.data.redirectUrl);
+        return;
+    }
 }
 /*
 function getClickedListItemElement(target) {
