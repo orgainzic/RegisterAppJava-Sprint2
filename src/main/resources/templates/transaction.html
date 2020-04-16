@@ -14,10 +14,23 @@
 <body>
     <div id="main" class="main">
 		<div class="searchWrapper">
-			<form action="/transaction" method="POST" >
+			<form action="/search" method="POST">
 				<input type="text" name="searchProduct" placeholder="Search for a product">
-				<button id="addProduct" type="button" class="action">Search</button>
+				<button id="searchButton" type="button" class="action">Search</button>				
 			</form>
+		</div>
+		<div class="productsSearchWrapper">
+
+			<br />
+			<br />
+
+			<ul id="productsListing" class="products">
+				<li th:each="searchProduct : ${searchProducts}">
+					<input type="hidden" name="productId" th:value="${searchProducts.id}" />
+					<span class="productLookupCodeDisplay" th:text="${searchProducts.lookupCode}">lookupCode</span>
+					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${searchProducts.count}">0</span>
+				</li>
+			</ul>
 		</div>
 
 		<br />
