@@ -38,7 +38,7 @@ public class ProductCreateCommand implements ResultCommandInterface<Product> {
 	}
 
 	@Transactional
-	private ProductEntity createProductEntity() {
+	ProductEntity createProductEntity() {
 		final Optional<ProductEntity> queriedProductEntity =
 			this.productRepository
 				.findByLookupCode(this.apiProduct.getLookupCode());
