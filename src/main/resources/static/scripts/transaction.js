@@ -11,9 +11,9 @@ function searchActionClick(event){
         return;
     }
     else{
-        const saveActionUrl = ("/api/transaction");
+        const saveActionUrl = ("/transaction/search");
         const saveSearchRequest = {
-            searchId: getSearchId();
+            searchId: getSearchId()
         }
         ajaxPost(saveActionUrl, saveSearchRequest, (callbackResponse) => {
             saveActionElement.disabled = false;
