@@ -68,17 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
         listItemElements[i].addEventListener("click", removeProduct);
     }
 });
-/*
-function updateQuantity(event) {
-
-}
-*/
 
 function removeProduct(event) {
     const unorderedListElement = document.getElementById("productsListing");
     unorderedListElement.removeChild(
         getClickedListItemElement(event.target));
 }
+
+/*
+function updateQuantity(event) {
+
+}
+*/
+
+
 /*
 function submitTransaction(event) {
 
