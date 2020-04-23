@@ -49,6 +49,10 @@
                 </li>
             </ul>
         </div>
-    </div>
+	</div>
+	<div class="footer" th:classappend="${employee.isInitialEmployee} ? hidden : ''">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+		<img id="cancelImage" src="/images/Cancel-Transaction.png" alt="Cancel Transaction" class="leftfooter" />
+	</div>
 </body>
 </html>

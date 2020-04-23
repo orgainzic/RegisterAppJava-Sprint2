@@ -54,3 +54,14 @@ button.action:hover {
     color: #ffffff;
     background-color: #000000;
 }
+
+img.leftfooter {
+	z-index: 1;
+	height: 50px;
+    text-decoration: none;
+    display: inline-block;
+	cursor: pointer;
+	position: fixed;
+	left: 20;
+	bottom: 20;
+}
