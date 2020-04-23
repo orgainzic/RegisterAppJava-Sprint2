@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
     document.getElementById("cancelTransactionImage")
-        .addEventListener("click", cancelTransactionActionClickHandler)
+        .addEventListener("click", cancelTransactionActionClickHandler);
+    document.getElementById("checkoutImage")
+        .addEventListener("click", checkoutActionClick);
     const searchProductElement =
         getSearchProductElement();
     searchProductElement.focus();
@@ -55,6 +57,19 @@ function cancelTransactionActionClickHandler() {
 			window.location.replace("/mainMenu");
 		}
 	});
+}
+
+function checkoutActionClick() {
+    ajaxPost("/api/checkout", (callbackResponse) => {
+        if ((callbackResponse.data != null)
+			&& (callbackResponse.data.redirectUrl != null)
+			&& (callbackResponse.data.redirectUrl !== "")) {
+	
+			window.location.replace(callbackResponse.data.redirectUrl);
+		} else {
+			window.location.replace("/success");
+		}
+    });
 }
 /*
 function getClickedListItemElement(target) {
