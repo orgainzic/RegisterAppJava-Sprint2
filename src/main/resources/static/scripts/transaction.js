@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
+    document.getElementById("cancelTransactionImage")
+        .addEventListener("click", cancelTransactionActionClickHandler)
     const searchProductElement =
         getSearchProductElement();
     searchProductElement.focus();
@@ -39,6 +41,20 @@ function completeSearchAction(callbackResponse) {
         window.location.replace(callbackResponse.data.redirectUrl);
         return;
     }
+}
+
+//Cancel Transaction
+function cancelTransactionActionClickHandler() {
+	ajaxDelete("/api/cancelTransaction", (callbackResponse) => {
+		if ((callbackResponse.data != null)
+			&& (callbackResponse.data.redirectUrl != null)
+			&& (callbackResponse.data.redirectUrl !== "")) {
+	
+			window.location.replace(callbackResponse.data.redirectUrl);
+		} else {
+			window.location.replace("/mainMenu");
+		}
+	});
 }
 /*
 function getClickedListItemElement(target) {
