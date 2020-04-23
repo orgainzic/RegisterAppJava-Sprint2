@@ -48,6 +48,17 @@ img.footer {
 	bottom: 20;
 }
 
+img.midfooter{
+	z-index: 1;
+	height: 50px;
+    text-decoration: none;
+    display: inline-block;
+	cursor: pointer;
+	position: fixed;
+	left: 50%;
+	bottom: 20;
+}
+
 div.inputContent,
 form.inputContent {
 	display: inline-block;
