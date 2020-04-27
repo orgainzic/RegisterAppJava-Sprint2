@@ -14,7 +14,7 @@ import java.util.UUID;
 public class AddProductToTransaction implements ResultCommandInterface<TransactionEntry> {
     @Override
     public TransactionEntry execute() {
-        // TODO: this.validateProperties();
+        this.validateProperties();
 
         // Create a new ENTITY object from the API object details
         // We assume only quantity of 1 is initially added to Transaction.. Can be updated in cart
