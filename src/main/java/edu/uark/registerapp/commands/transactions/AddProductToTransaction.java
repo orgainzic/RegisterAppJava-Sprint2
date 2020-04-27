@@ -17,6 +17,7 @@ public class AddProductToTransaction implements ResultCommandInterface<Transacti
         // TODO: this.validateProperties();
 
         // Create a new ENTITY object from the API object details
+        // We assume only quantity of 1 is initially added to Transaction.. Can be updated in cart
         final TransactionEntryEntity transactionEntryEntity =
                 this.transactionEntryRepository.save(new TransactionEntryEntity(
                         this.transactionId,
