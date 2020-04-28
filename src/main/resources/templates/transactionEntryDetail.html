@@ -1,0 +1,79 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Register - TransactionEntry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/transactionEntryDetail.css">
+
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/transactionEntryDetail.js" defer></script>
+</head>
+
+<body>
+    <div id="main" class="main">
+        <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+            <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+        </div>
+
+        <div class="transactionEntryDetailWrapper">
+            <table id="transactionEntryDetails">
+                <tbody>
+                    <tr class="hidden">
+                        <td>ID:</td>
+                        <td>
+                            <input id="transactionEntryId" type="hidden" th:value"${!transactionEntry.isEmpty} ? ${transactionEntry.id} : ''" />
+                        </td>
+                    </tr>
+                    <tr class="hidden">
+                        <td class="hidden">TransactionID:</td>
+                        <input id="transactionEntryTransactionId" type="hidden" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.transactionId} : ''" />
+                    </tr>
+                    <tr>
+                        <td class="label">ProductID:</td>
+                        <input id="transactionEntryProductId" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.productId} : ''" readonly/>
+                    </tr>
+                    <tr>
+                        <td class="label">Price:</td>
+                        <input id="transactionEntryPrice" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.price} : ''" readonly />
+                    </tr>
+                    <tr>
+                        <td class="label">Quantity:</td>
+                        <td>
+                            <input id="transactionEntryQuantity" type="number" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.quantity} : ''" class="update" th:disabled="not ${isElevatedUser}" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="transactionEntryActionsWrapper" th:class="(not ${isElevatedUser} OR not ${#strings.isEmpty(errorMessage)}) ? hidden : ''">
+            <br />
+            <div id="deleteActionContainer" th:class="${transactionEntry.isEmpty} ? hidden ? : ''">
+                <button id="deleteButton" type="button" class="action">Delete</button>
+                <br />
+                <br />
+            </div>
+            <button id="saveButton" type="button" class="action">Save</button>
+        </div>
+
+        <div id="transactionEntrySavedAlertModal" class="modal animate-opacity-show">
+            <div class="modal-content">
+                <div class="container gray-blue">
+                    <h1>
+                        <span>TransactionEntry</span><br />
+                        <span>Saved</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+    </div>
+
+
+</body>
+</html>
