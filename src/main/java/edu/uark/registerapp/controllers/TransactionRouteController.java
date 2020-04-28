@@ -2,41 +2,59 @@ package edu.uark.registerapp.controllers;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import edu.uark.registerapp.commands.products.ProductQuery;
+import edu.uark.registerapp.commands.transactions.AddProductToTransaction;
 import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCode;
+import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
+import edu.uark.registerapp.models.api.Transaction;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
 
 @Controller
 @RequestMapping(value = "/transaction")
 public class TransactionRouteController extends BaseRouteController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView landing(
-		@RequestParam final Map<String, String> queryParameters,
-		final HttpServletRequest request
-	) {
-        ModelAndView modelAndView =
+	public RedirectView landing(@RequestParam final Map<String, String> queryParameters,
+			final HttpServletRequest request) {
+
+		createTransaction.setCashierID(this.getCurrentUser(request).get().getEmployeeId());
+		UUID transactionId = createTransaction.execute().getId();
+	    return new RedirectView("http://localhost:8080/transaction/" + transactionId);
+	}
+
+	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+	public ModelAndView transaction(
+			@PathVariable final UUID transactionId,
+			@RequestParam final Map<String, String> queryParameters,
+			final HttpServletRequest request) {
+
+			ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
-
-			return modelAndView;
+	
+		return modelAndView;
 	}
 
-	@RequestMapping(value = "/searchForProduct", method = RequestMethod.GET)
-	public ModelAndView search(
+	@RequestMapping(value = "/{transactionId}/search", method = RequestMethod.GET)
+	public ModelAndView searchLanding(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
@@ -48,8 +66,8 @@ public class TransactionRouteController extends BaseRouteController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView searched(
+	@RequestMapping(value = "/{transactionId}/search", method = RequestMethod.POST)
+	public ModelAndView searchActive(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
@@ -84,6 +102,37 @@ public class TransactionRouteController extends BaseRouteController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/{transactionId}/search/{productId}", method = RequestMethod.GET)
+	public RedirectView addToCart(
+		@PathVariable final UUID transactionId,
+		@PathVariable final UUID productId,
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+
+		System.out.println();
+		System.out.println(transactionId);
+		System.out.println();
+		System.out.println(productId);
+
+		/*
+		searchById.setProductId(productId);
+		Product product = searchById.execute();
+		addToTransaction.set
+		*/
+		RedirectView redirect = new RedirectView("/" + transactionId);	
+		return redirect;
+	}
+
 	@Autowired
 	private ProductSearchByPartialLookupCode searchByPartialLookup;
+
+	@Autowired 
+	private ProductQuery searchById;
+
+	@Autowired
+	private AddProductToTransaction addToTransaction;
+
+	@Autowired
+	private TransactionCreateCommand createTransaction;
 }
