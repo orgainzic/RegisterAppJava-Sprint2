@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function purchaseActionClick(){
-    ajaxPost("/api/purchase", (callbackResponse) => {
+    ajaxPost("/api/selected", (callbackResponse) => {
 		if ((callbackResponse.data != null)
 			&& (callbackResponse.data.redirectUrl != null)
 			&& (callbackResponse.data.redirectUrl !== "")) {
@@ -15,3 +15,13 @@ function purchaseActionClick(){
 		}
 });
 }
+
+function getClickedListItemElement(target) {
+    let clickedElement = target;
+    while (clickedElement.tagName !== "LI") {
+        clickedElement = clickedElement.parentElement;
+    }
+    return clickedElement;
+}
+
+
