@@ -8,10 +8,12 @@ import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Service
 public class UpdateTransactionEntryQuantities implements ResultCommandInterface<TransactionEntry[]> {
     @Transactional
     @Override
@@ -46,6 +48,8 @@ public class UpdateTransactionEntryQuantities implements ResultCommandInterface<
     }
 
     // Properties
+
+    // TODO: transactionEntries may need to be of List<> type...
     private TransactionEntry[] transactionEntries;
     public TransactionEntry[] getTransactionEntries() { return this.transactionEntries; }
     public UpdateTransactionEntryQuantities setTransactionEntries(final TransactionEntry[] transactionEntries) {
