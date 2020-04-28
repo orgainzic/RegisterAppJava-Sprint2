@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+	const searchProductListElements = document.getElementById("productsSearchedListing").children;
 	document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
-    document.getElementById("purchaseButton")
-        .addEventListener("click", purchaseActionClick);
+    //document.getElementById("purchaseButton")
+	  //  .addEventListener("click", purchaseActionClick);
+	for (let i = 0; i < searchProductListElements.length; i++) {
+		searchProductListElements[i].addEventListener("click", productClick);
+	}
 });
 
 //Search for Product
@@ -41,6 +45,35 @@ function completeSearchAction(callbackResponse) {
     }
 }
 
+function findClickedListItemElement(clickedTarget) {
+	if (clickedTarget.tagName.toLowerCase() === "li") {
+		return clickedTarget;
+	} else {
+		let ancestorIsListItem = false;
+		let ancestorElement = clickedTarget.parentElement;
+
+		while (!ancestorIsListItem && (ancestorElement != null)) {
+			ancestorIsListItem = (ancestorElement.tagName.toLowerCase() === "li");
+
+			if (!ancestorIsListItem) {
+				ancestorElement = ancestorElement.parentElement;
+			}
+		}
+
+		return (ancestorIsListItem ? ancestorElement : null);
+	}
+}
+
+function productClick(event) {
+	let listItem = findClickedListItemElement(event.target);
+
+	window.location.assign(
+		"/addToCart/"
+		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
+}
+
+/*
+
 function purchaseActionClick(){
     ajaxPost("/api/selected", (callbackResponse) => {
 		if ((callbackResponse.data != null)
@@ -52,14 +85,7 @@ function purchaseActionClick(){
 			window.location.replace("/success");
 		}
 });
-}
+}*/
 
-function getClickedListItemElement(target) {
-    let clickedElement = target;
-    while (clickedElement.tagName !== "LI") {
-        clickedElement = clickedElement.parentElement;
-    }
-    return clickedElement;
-}
 
 

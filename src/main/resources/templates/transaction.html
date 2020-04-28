@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 	<title>Register - transaction</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -9,7 +9,7 @@
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
-	<script type="text/javascript" src="/scripts/productsListing.js" defer></script>
+	
 ​
 </head>
 <body>
@@ -22,13 +22,27 @@
 		<button id="searchForProductButton" type="button" class="action">Search for Product</button>
 		
 ​
-        <div class="productsWrapper">
-            <ul id="productsListing" class="products">
-                <li th:each="product : ${products}">
-                    <span class="productlookupCodeDisplay" th:text="${product.lookupCode}">Product Lookup Code</span>
-                    <br /><span>&nbsp;&nbsp;</span>
-                </li>
-            </ul>
+        <div>
+			<table id="transactionConfirmedProducts">
+				<tbody>
+					<tr> 
+						<td class="label">Product:</td>
+						<td>
+							<span class="searchedProductLookupCodeDisplay" th:text="${searchedProduct.lookupCode}">lookupCode</span>
+						</td>
+						<td class="label">Quantity:</td>
+						<td>
+							<input id="searchedProductSelectedQuantity" type="number" min="0" max="${searchedProduct.count}">
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Total Number of Items:</td>
+						<td>
+							<span class="searchedProductTotalCount" th:text="sumOfQuantities()">Total</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
         </div>
 	</div>
 	<div class="footer">

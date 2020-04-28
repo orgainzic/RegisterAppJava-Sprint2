@@ -35,6 +35,19 @@ function searchForProductClickHandler() {
 
 }
 
+//Sum Total Products Desired
+function sumOfQuantities() {
+    const searchedProductUserQuantity = getsearchedProductSelectedQuantity();
+    for(i= 0; i < searchedProductUserQuantity; i++){
+        searchedProductUserQuantity += searchedProductUserQuantity;
+    }
+    return searchedProductUserQuantity;
+}
+
+function getsearchedProductSelectedQuantity() {
+    return document.getElementById("searchedProductSelectedQuantity").value;
+}
+
 //Checkout
 /*function checkoutActionClick() {
     ajaxPatch("/api/checkout", (callbackResponse) => {
