@@ -43,6 +43,7 @@ function completeSearchAction(callbackResponse) {
     }
     if ((callbackResponse.data.redirectUrl != null)
         && (callbackResponse.data.redirectUrl !== "")) {
+		alert("THIS SHOULD NOT BE HAPPENING")
         window.location.replace(callbackResponse.data.redirectUrl);
         return;
     }
