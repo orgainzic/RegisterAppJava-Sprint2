@@ -4,7 +4,6 @@ import edu.uark.registerapp.commands.ResultCommandInterface;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.api.Transaction;
-import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.entities.ProductEntity;
 import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
@@ -40,6 +39,9 @@ public class TransactionSubmission implements ResultCommandInterface<Transaction
         // Write, via an UPDATE, any changes to database.
         this.transactionRepository.save(transactionEntity.get());
 
+        // Update Product Counts in database
+        this.updateProductQuantities();
+
         return this.apiTransaction;
     }
 
@@ -49,7 +51,7 @@ public class TransactionSubmission implements ResultCommandInterface<Transaction
             throw new UnprocessableEntityException("transactionId");
         }
     }
-    // TODO: Verify this works without Transactional annotation since we are performing an update to db
+
     private void updateProductQuantities() {
         for (TransactionEntryEntity transactionEntryEntity :
         this.transactionEntryRepository.findByTransactionId(this.transactionId)) {
