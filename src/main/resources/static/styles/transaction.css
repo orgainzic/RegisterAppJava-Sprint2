@@ -1,35 +1,35 @@
-div.main {
-	padding-top: 0px;
-	text-align: center
-}
-​
-div.productsWrapper {
+.transactionWrapper {
 	display: inline-block;
 }
-​
-ul.products {
+
+.transactionEntries {
 	margin: 0 0 2em 0;
 	list-style-type: none;
 	padding: 0;
 	width: 15em;
 }
-​
-ul.products > li {
+
+.transactionEntries li {
 	cursor: pointer;
 	background-color: #EEE;
 	margin: .5em;
 	padding: .3em;
-	height: 2.5em;
+	height: 4em;
+	width: 22em;
 	border-radius: 4px;
 	text-align: left;
 }
-​
-ul.products > li:hover {
+
+.transactionEntries li:hover {
 	color: #607D8B;
 	background-color: #DDD;
 	left: .1em;
 }
-​
+
+a.button {
+	text-decoration: none;
+}
+
 button.action {
     margin: 0;
     border: 0;
@@ -48,7 +48,7 @@ button.action {
     cursor: default;
 	text-decoration: none;
 }
-​
+
 button.action:hover {
     cursor: pointer;
     color: #ffffff;
@@ -62,8 +62,8 @@ img.leftfooter {
     display: inline-block;
 	cursor: pointer;
 	position: fixed;
-	left: 20;
-	bottom: 20;
+	left: 20px;
+	bottom: 20px;
 }
 
 img.midfooter {
@@ -73,5 +73,5 @@ img.midfooter {
     display: inline-block;
 	cursor: pointer;
 	position: fixed;
-	bottom: 20;
+	bottom: 20px;
 }
