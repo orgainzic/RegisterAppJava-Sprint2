@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .addEventListener("click", cancelTransactionActionClickHandler);
     document.getElementById("checkoutImage")
         .addEventListener("click", checkoutActionClick);
+    document.getElementById("searchForProductButton")
+        .addEventListener("click", searchForProductClickHandler);
     const searchProductElement =
         getSearchProductElement();
     searchProductElement.focus();
@@ -59,6 +61,13 @@ function cancelTransactionActionClickHandler() {
 			window.location.replace("/mainMenu");
 		}
 	});
+}
+
+//SearchForProduct
+
+function searchForProductClickHandler() {
+    window.location.replace("/searchForProduct")
+
 }
 
 //Checkout
