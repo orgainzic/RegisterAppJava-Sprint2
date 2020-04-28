@@ -13,4 +13,5 @@ function purchaseActionClick(){
 		} else {
 			window.location.replace("/success");
 		}
+});
 }
