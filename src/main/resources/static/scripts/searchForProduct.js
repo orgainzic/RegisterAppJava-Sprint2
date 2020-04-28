@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Search for Product
 function getURL(){
-	return window.location + "/search";
+	return window.location;
 }
 
 function searchActionClick(event){
