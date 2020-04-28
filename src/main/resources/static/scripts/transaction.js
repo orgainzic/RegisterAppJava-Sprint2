@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("cancelTransactionImage")
         .addEventListener("click", cancelTransactionActionClickHandler);
-    document.getElementById("checkoutImage")
-        .addEventListener("click", checkoutActionClick);
+    //document.getElementById("checkoutImage")
+      //  .addEventListener("click", checkoutActionClick);
     document.getElementById("searchForProductButton")
         .addEventListener("click", searchForProductClickHandler);
     const searchProductElement =
@@ -44,24 +44,23 @@ function searchForProductClickHandler() {
 	
 			window.location.replace(callbackResponse.data.redirectUrl);
 		} else {
-			window.location.replace("/cart");
+			window.location.replace("/success");
 		}
     });
 }*/
-/*
-function getClickedListItemElement(target) {
+
+/*function getClickedListItemElement(target) {
     let clickedElement = target;
     while (clickedElement.tagName !== "LI") {
         clickedElement = clickedElement.parentElement;
     }
     return clickedElement;
-}
+}*/
 
-function addProduct(event) {
-    const unorderedListElement = document.getElementById("productsListing");
-    const nextEntryId = (unorderedListElement.childElementCount + 1).toString();
+function addProductToTransactionList() {
+	const unorderedListElement = document.getElementById(getClickedListItemElement);
+    const nextEntryId = (unorderedListElement.childElementCount).toString();
     const listItemElement = document.createElement("li");
-    listItemElement.addEventListener("click", removeProduct);
     const lookupCodeDisplayElement = document.createElement("span");
     lookupCodeDisplayElement.innerHTML = ("Product Lookup Code " + nextEntryId);
     lookupCodeDisplayElement.classList.add("lookupCodeDisplay");
@@ -73,6 +72,8 @@ function addProduct(event) {
     listItemElement.appendChild(entryIdDisplayElement);
     unorderedListElement.appendChild(listItemElement);
 }
+
+/*
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("addButton")
         .addEventListener("click", addProduct);
