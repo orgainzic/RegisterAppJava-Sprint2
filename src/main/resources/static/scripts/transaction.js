@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     searchProductElement.focus();
     searchProductElement.select();
 });
+
+//Search for Product
 function searchActionClick(event){
     if (!validateSearch()) {
         return;
@@ -59,15 +61,16 @@ function cancelTransactionActionClickHandler() {
 	});
 }
 
+//Checkout
 function checkoutActionClick() {
-    ajaxPost("/api/checkout", (callbackResponse) => {
+    ajaxPatch("/api/checkout", (callbackResponse) => {
         if ((callbackResponse.data != null)
 			&& (callbackResponse.data.redirectUrl != null)
 			&& (callbackResponse.data.redirectUrl !== "")) {
 	
 			window.location.replace(callbackResponse.data.redirectUrl);
 		} else {
-			window.location.replace("/success");
+			window.location.replace("/cart");
 		}
     });
 }
