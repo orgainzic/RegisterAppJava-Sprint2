@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("searchButton")
-        .addEventListener("click", searchActionClick);
+    
     document.getElementById("cancelTransactionImage")
         .addEventListener("click", cancelTransactionActionClickHandler);
     document.getElementById("checkoutImage")
@@ -13,41 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchProductElement.select();
 });
 
-//Search for Product
-function searchActionClick(event){
-    if (!validateSearch()) {
-        return;
-    }
-    else {
-        document.getElementById("searchForm").submit();
-    }
-}
-function getSearchId(){
-    return document.getElementById("searchProduct").value;
-}
-function getSearchProductElement(){
-    return document.getElementById("searchProduct");
-}
-function validateSearch(){
-    const searchProductElement = getSearchProductElement();
-    if(searchProductElement.value.trim() === "") {
-        displayError("Please enter a product to search for.");
-        searchProductElement.focus();
-        searchProductElement.select();
-        return false;
-    }
-    return true;
-}
-function completeSearchAction(callbackResponse) {
-    if (callbackResponse.data == null) {
-        return;
-    }
-    if ((callbackResponse.data.redirectUrl != null)
-        && (callbackResponse.data.redirectUrl !== "")) {
-        window.location.replace(callbackResponse.data.redirectUrl);
-        return;
-    }
-}
+
 
 //Cancel Transaction
 function cancelTransactionActionClickHandler() {
@@ -71,7 +36,7 @@ function searchForProductClickHandler() {
 }
 
 //Checkout
-function checkoutActionClick() {
+/*function checkoutActionClick() {
     ajaxPatch("/api/checkout", (callbackResponse) => {
         if ((callbackResponse.data != null)
 			&& (callbackResponse.data.redirectUrl != null)
@@ -82,7 +47,7 @@ function checkoutActionClick() {
 			window.location.replace("/cart");
 		}
     });
-}
+}*/
 /*
 function getClickedListItemElement(target) {
     let clickedElement = target;
