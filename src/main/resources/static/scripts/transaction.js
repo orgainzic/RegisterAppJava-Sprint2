@@ -56,7 +56,7 @@ function findClickedListItemElement(clickedTarget) {
 function transactionClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 	window.location.assign(
-		window.location + "/" + listItem.querySelector("input[name='productId']").value);
+		window.location + "/details/" + listItem.querySelector("input[name='transactionEntryId'][type='hidden']").value);
 }
 
 //Checkout

@@ -8,7 +8,8 @@ public enum ViewNames {
 	SEARCH("searchForProduct"),
 	SUCCESS("success"),
 	PRODUCT_LISTING("productListing"),
-	TRANSACTION("transaction");
+	TRANSACTION("transaction"),
+	ENTRY_DETAIL("transactionEntryDetail");
 	
 	public String getRoute() {
 		return this.route;

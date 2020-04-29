@@ -124,7 +124,6 @@ function hideProductSavedAlertModal() {
 function deleteActionClick(event) {
 	const deleteActionElement = event.target;
 	const deleteActionUrl = ("/api/product/" + getProductId());
-
 	deleteActionElement.disabled = true;
 
 	ajaxDelete(deleteActionUrl, (callbackResponse) => {

@@ -20,15 +20,13 @@ import edu.uark.registerapp.commands.transactions.AddProductToTransaction;
 import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCode;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
+import edu.uark.registerapp.commands.transactions.TransactionEntryQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
-import edu.uark.registerapp.models.api.Transaction;
 import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
-import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
-import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 
 @Controller
 @RequestMapping(value = "/transaction")
@@ -132,9 +130,56 @@ public class TransactionRouteController extends BaseRouteController {
 		addToTransaction.setTransactionId(transactionId);
 		addToTransaction.execute();
 
-		RedirectView redirect = new RedirectView("http://localhost:8080/transaction/" + transactionId);	
-		return redirect;
+		return new RedirectView("http://localhost:8080/transaction/" + transactionId);	
 	}
+
+	@RequestMapping(value = "/{transactionId}/details/{entryId}", method = RequestMethod.GET)
+	public ModelAndView detailsLanding(
+		@PathVariable final UUID transactionId,
+		@PathVariable final UUID entryId,
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+		ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.ENTRY_DETAIL.getViewName()),
+				queryParameters);
+
+			querySpecificEntry.setTransactionEntryId(entryId);
+
+			final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
+			if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+			} else if (!this.isElevatedUser(activeUserEntity.get())) {
+				return this.buildNoPermissionsResponse(
+				ViewNames.PRODUCT_LISTING.getRoute());
+			}      
+
+			modelAndView.addObject(
+			ViewModelNames.IS_ELEVATED_USER.getValue(),
+			EmployeeClassification.isElevatedUser(
+			activeUserEntity.get().getClassification()));
+			
+				
+			try {
+				modelAndView.addObject(
+					ViewModelNames.ENTRY.getValue(),
+					querySpecificEntry.execute());
+			} catch (final Exception e) {
+				System.out.println(e.toString());
+				modelAndView.addObject(
+					ViewModelNames.ERROR_MESSAGE.getValue(),
+					e.getMessage());
+				modelAndView.addObject(
+					ViewModelNames.ENTRY.getValue(),
+					(new TransactionEntry()));
+			}
+		
+		
+		return modelAndView; 
+	}
+
 
 	@Autowired
 	private ProductSearchByPartialLookupCode searchByPartialLookup;
@@ -149,8 +194,8 @@ public class TransactionRouteController extends BaseRouteController {
 	private TransactionCreateCommand createTransaction;
 
 	@Autowired
-	private TransactionEntryRepository transactionRepo;
+	private TransactionEntriesQueriedByTransactionId queryEntries;
 
 	@Autowired
-	private TransactionEntriesQueriedByTransactionId queryEntries;
+	private TransactionEntryQuery querySpecificEntry;
 }
