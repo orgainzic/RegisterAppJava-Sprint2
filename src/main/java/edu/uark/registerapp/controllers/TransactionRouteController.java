@@ -21,11 +21,13 @@ import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCo
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
 import edu.uark.registerapp.commands.transactions.TransactionEntryQuery;
+import edu.uark.registerapp.commands.transactions.TransactionSubmission;
 import edu.uark.registerapp.commands.transactions.TransactionSummaryQuery;
 import edu.uark.registerapp.commands.transactions.UpdateTransactionPrice;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
+import edu.uark.registerapp.models.api.Transaction;
 import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.api.TransactionSummary;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
@@ -196,6 +198,39 @@ public class TransactionRouteController extends BaseRouteController {
 		return modelAndView; 
 	}
 
+	@RequestMapping(value = "/{transactionId}/checkout", method = RequestMethod.GET)
+	public ModelAndView checkout(
+		@PathVariable final UUID transactionId,
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+		submitTransaction.setTransactionId(transactionId);
+		submitTransaction.execute();
+
+		ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.SUCCESS.getViewName()),
+				queryParameters);
+		
+		
+		Transaction transaction = submitTransaction.execute();
+
+			try {
+				modelAndView.addObject(
+					ViewModelNames.SUCCESS.getValue(),
+					transaction);
+			} catch (final Exception e) {
+				modelAndView.addObject(
+					ViewModelNames.ERROR_MESSAGE.getValue(),
+					e.getMessage());
+				modelAndView.addObject(
+					ViewModelNames.SUCCESS.getValue(),
+					(new Transaction[0]));
+			}
+			
+		return modelAndView;
+	}
+
 
 	@Autowired
 	private ProductSearchByPartialLookupCode searchByPartialLookup;
@@ -220,4 +255,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 	@Autowired
 	private TransactionSummaryQuery summaryQuery;
+
+	@Autowired
+	private TransactionSubmission submitTransaction;
 }
