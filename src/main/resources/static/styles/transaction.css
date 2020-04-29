@@ -1,6 +1,7 @@
 .transactionWrapper {
 	display: inline-block;
 }
+
 ​
 .transactionEntries {
 	margin: 0 0 2em 0;
@@ -8,6 +9,7 @@
 	padding: 0;
 	width: 15em;
 }
+
 ​
 .transactionEntries li {
 	cursor: pointer;
@@ -18,12 +20,14 @@
 	border-radius: 4px;
 	text-align: left;
 }
+
 ​
 .transactionEntries li:hover {
 	color: #607D8B;
 	background-color: #DDD;
 	left: .1em;
 }
+
 
 a.button {
 	text-decoration: none;
