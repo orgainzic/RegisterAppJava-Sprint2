@@ -31,7 +31,7 @@ function cancelTransactionActionClickHandler() {
 //SearchForProduct
 
 function searchForProductClickHandler() {
-    window.location.replace("/transaction/searchForProduct")
+    window.location.replace(window.location + "/search")
 
 }
 

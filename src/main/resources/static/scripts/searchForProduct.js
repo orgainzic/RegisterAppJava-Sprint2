@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Search for Product
 function getURL(){
-	return window.location + "/search";
+	return window.location;
 }
 
 function searchActionClick(event){
@@ -43,6 +43,7 @@ function completeSearchAction(callbackResponse) {
     }
     if ((callbackResponse.data.redirectUrl != null)
         && (callbackResponse.data.redirectUrl !== "")) {
+		alert("THIS SHOULD NOT BE HAPPENING")
         window.location.replace(callbackResponse.data.redirectUrl);
         return;
     }
@@ -69,7 +70,6 @@ function findClickedListItemElement(clickedTarget) {
 
 function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
-
 	window.location.assign(
 		window.location + "/" + listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
