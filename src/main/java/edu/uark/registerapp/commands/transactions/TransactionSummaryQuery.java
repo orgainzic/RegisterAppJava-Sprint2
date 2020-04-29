@@ -3,6 +3,7 @@ package edu.uark.registerapp.commands.transactions;
 import edu.uark.registerapp.commands.ResultCommandInterface;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
+import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.api.TransactionSummary;
 import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
@@ -32,9 +33,14 @@ public class TransactionSummaryQuery implements ResultCommandInterface<Transacti
         List<TransactionEntryEntity> transactionEntryEntities =
                 this.transactionEntryRepository.findByTransactionId(this.transactionId);
 
+        int itemCount = 0;
+        for(TransactionEntryEntity transactionEntryEntity : transactionEntryEntities) {
+            itemCount += Math.round(transactionEntryEntity.getQuantity());
+        }
+
         return new TransactionSummary(
                 (transactionEntity.get().getTotal() / 100.00),
-                transactionEntryEntities.size());
+                itemCount);
 
     }
 
