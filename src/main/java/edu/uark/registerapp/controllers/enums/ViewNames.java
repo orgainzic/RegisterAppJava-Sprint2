@@ -5,6 +5,8 @@ public enum ViewNames {
 	MAIN_MENU("mainMenu"),
 	PRODUCT_DETAIL("productDetail"),
 	EMPLOYEE_DETAIL("employeeDetail"),
+	SEARCH("searchForProduct"),
+	SUCCESS("success"),
 	PRODUCT_LISTING("productListing"),
 	TRANSACTION("transaction");
 	

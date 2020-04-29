@@ -35,6 +35,19 @@ public class TransactionRouteController extends BaseRouteController {
 			return modelAndView;
 	}
 
+	@RequestMapping(value = "/searchForProduct", method = RequestMethod.GET)
+	public ModelAndView search(
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+        ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.SEARCH.getViewName()),
+				queryParameters);
+	
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView searched(
 		@RequestParam final Map<String, String> queryParameters,
@@ -42,7 +55,7 @@ public class TransactionRouteController extends BaseRouteController {
 	) {
         ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
+				new ModelAndView(ViewNames.SEARCH.getViewName()),
 				queryParameters);
 
 		System.out.println(queryParameters);
@@ -50,13 +63,16 @@ public class TransactionRouteController extends BaseRouteController {
 		System.out.println(queryParameters.get("searchProduct"));
 		
 		searchByPartialLookup.setPartialLookupCode(queryParameters.get("searchProduct"));
+		
 		Product[] products = searchByPartialLookup.execute();
+		System.out.println(products);
 
 			try {
 				modelAndView.addObject(
 					ViewModelNames.PRODUCTS.getValue(),
 					products);
 			} catch (final Exception e) {
+				System.out.println(e.toString());
 				modelAndView.addObject(
 					ViewModelNames.ERROR_MESSAGE.getValue(),
 					e.getMessage());
