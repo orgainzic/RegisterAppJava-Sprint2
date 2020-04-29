@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class TransactionEntriesQueriesByTransactionId implements ResultCommandInterface<TransactionEntry[]> {
+public class TransactionEntriesQueriedByTransactionId implements ResultCommandInterface<TransactionEntry[]> {
     @Override
     public TransactionEntry[] execute() {
         this.validateProperties();
@@ -32,7 +32,7 @@ public class TransactionEntriesQueriesByTransactionId implements ResultCommandIn
     public UUID getTransactionId() {
         return  transactionId;
     }
-    public TransactionEntriesQueriesByTransactionId setTransactionId(final UUID transactionId) {
+    public TransactionEntriesQueriedByTransactionId setTransactionId(final UUID transactionId) {
         this.transactionId = transactionId;
         return this;
     }
