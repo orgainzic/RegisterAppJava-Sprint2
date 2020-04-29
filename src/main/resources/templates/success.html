@@ -4,7 +4,8 @@
 	<title>Register - Successful Transaction</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/success.css"
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/success.js" defer></script>
@@ -13,12 +14,25 @@
 <body>
 
 	<div class="header">
-		<h1 class="primary-message">Success!</h1>
+		<h1 class="primary-message">Order Placed!</h1>
     </div>
     <div id="main" class="main">
-        <button id="homeButton" type="button" class="action">Return To Main Menu</button>
+        <div class="successWrapper">   
+            <br />
+            <br/>
+                <ul id="transaction" class="transactions">
+                    <li th:each="transaction : ${transactions}">
+                        <input type="hidden" name="transactionTransactionId" th:value="${transaction.id}" />
+                        <span class="transactionCashierId" th:value="${transaction.cashierId}">cashier</span>
+                        <br />&nbsp;&nbsp;<span class="transactionTotal" th:text="${transaction.total}">0.00</span>
+                        <br />&nbsp;&nbsp;<span class="transactionType" th:text="${transaction.type}">0</span>
+                        <br />&nbsp;&nbsp;<span class="transactionReferenceId" th:text="${transaction.referenceId}">0</span>
+                    </li>
+                </ul>
+        </div>
     </div>
     <div class="footer">
+        <img id="homeButtonImage" src="/images/Home.png" alt="Main Menu" class="leftfooter" />
         <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
     </div>
 
