@@ -29,7 +29,7 @@ function saveActionClick(event) {
 
     const transactionEntryId = getTransactionEntryId();
     const transactionEntryIdIsDefined = ((transactionEntryId != null) && (transactionEntryId.trim() !== ""));
-    const saveActionUrl = ("/api/entry/update"); // TODO: verify this is the correct URL
+    const saveActionUrl = ("/api/entry/update");
     // TODO: need to make sure this is synchronous with an api
     const saveTransactionEntryRequest = {
         id: transactionEntryId,

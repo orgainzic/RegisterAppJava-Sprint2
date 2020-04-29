@@ -48,13 +48,13 @@
 						<tr class="label">
 							<td>Items in Transaction:</td>
 							<td>
-								<input id="transactionItemsCount" type="text" th:value="${!transactionSummary.isEmpty} ? ${transactionSummary.count} : ''" readonly />
+								<input id="transactionItemsCount" type="number" th:value="${!transactionSummary.isEmpty} ? ${transactionSummary.count} : ''" readonly />
 							</td>
 						</tr>
 						<tr>
 							<td class="label">Total Price:</td>
 							<td>
-								<input id="transactionSummaryPrice" type="text" th:value="${!transactionSummary.isEmpty} ? ${transactionSummary.price} : ''" readonly />
+								<input id="transactionSummaryPrice" type="text" th:value="${!transactionSummary.isEmpty} ? ${#numbers.formatDecimal(transactionSummary.price, 1, 'DEFAULT', 2, 'DEFAULT')} : ''" readonly />
 							</td>
 						</tr>
 					</tbody>
