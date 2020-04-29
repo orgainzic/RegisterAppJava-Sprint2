@@ -7,6 +7,7 @@ public enum ViewModelNames {
 	PRODUCTS("products"), // Product listing
 	PRODUCT("product"), // Product detail
 	ENTRIES("transactionEntries"), //transaction page
+	ENTRY_DETAILS("transactionEntryDetails"), //details page
 	EMPLOYEE_ID("employeeId"), // Sign in
 	EMPLOYEE("employee"), // Employee detail
 	EMPLOYEE_TYPES("employeeTypes");

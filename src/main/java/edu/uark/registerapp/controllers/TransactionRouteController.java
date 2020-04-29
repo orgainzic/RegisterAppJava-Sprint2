@@ -19,6 +19,7 @@ import edu.uark.registerapp.commands.transactions.AddProductToTransaction;
 import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCode;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
+import edu.uark.registerapp.commands.transactions.TransactionEntryQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
@@ -140,6 +141,23 @@ public class TransactionRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.ENTRY_DETAIL.getViewName()),
 				queryParameters);
+
+			querySpecificEntry.setTransactionEntryId(entryId);
+
+			try {
+				modelAndView.addObject(
+					ViewModelNames.ENTRY_DETAILS.getValue(),
+					querySpecificEntry.execute());
+			} catch (final Exception e) {
+				System.out.println(e.toString());
+				modelAndView.addObject(
+					ViewModelNames.ERROR_MESSAGE.getValue(),
+					e.getMessage());
+				modelAndView.addObject(
+					ViewModelNames.ENTRY_DETAILS.getValue(),
+					(new TransactionEntry()));
+			}
+		
 		
 		return modelAndView; 
 	}
@@ -159,4 +177,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 	@Autowired
 	private TransactionEntriesQueriedByTransactionId queryEntries;
+
+	@Autowired
+	private TransactionEntryQuery querySpecificEntry;
 }
