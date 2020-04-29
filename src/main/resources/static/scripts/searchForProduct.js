@@ -71,7 +71,7 @@ function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
 	window.location.assign(
-		window.location
+		window.location + "/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
 
