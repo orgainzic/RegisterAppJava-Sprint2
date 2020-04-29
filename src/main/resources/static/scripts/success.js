@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-	document.getElementById("homeButton")
+	document.getElementById("homeButtonImage")
         .addEventListener("click", homeActionClick);
 });
 

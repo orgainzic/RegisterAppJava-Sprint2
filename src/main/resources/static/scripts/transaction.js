@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const transactionProductListElements = document.getElementById("transactionEntry").children;
     document.getElementById("cancelTransactionImage")
         .addEventListener("click", cancelTransactionActionClickHandler);
-    //document.getElementById("checkoutImage")
-      //  .addEventListener("click", checkoutActionClick);
+    document.getElementById("checkoutImage")
+        .addEventListener("click", checkoutActionClick);
     document.getElementById("searchForProductButton")
         .addEventListener("click", searchForProductClickHandler);
     for (let i = 0; i < transactionProductListElements.length; i++) {
@@ -60,18 +60,9 @@ function transactionClick(event) {
 }
 
 //Checkout
-/*function checkoutActionClick() {
-    ajaxPatch("/api/checkout", (callbackResponse) => {
-        if ((callbackResponse.data != null)
-			&& (callbackResponse.data.redirectUrl != null)
-			&& (callbackResponse.data.redirectUrl !== "")) {
-	
-			window.location.replace(callbackResponse.data.redirectUrl);
-		} else {
-			window.location.replace("/success");
-		}
-    });
-}*/
+function checkoutActionClick() {
+    window.location.replace(window.location + "/")
+}
 
 
 
