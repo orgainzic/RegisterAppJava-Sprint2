@@ -110,7 +110,7 @@ function hideTransactionEntrySavedAlertModal() {
 function deleteActionClick(event) {
     const deleteActionElement = event.target;
     // TODO: Check this URL
-    const deleteActionUrl = ("/api/transactionEntry/" + getTransactionEntryId());
+    const deleteActionUrl = ("/api/entry/delete/" + getTransactionEntryId());
 
     deleteActionElement.disabled = true;
 
@@ -119,7 +119,8 @@ function deleteActionClick(event) {
 
         if (isSuccessResponse(callbackResponse)) {
             // TODO: Check this URL
-            window.location.replace("/");
+            let deleteRedirectUrl = window.location.slice(0, window.location.search("/details"));
+            window.location.replace(deleteRedirectUrl);
         }
     });
 };
