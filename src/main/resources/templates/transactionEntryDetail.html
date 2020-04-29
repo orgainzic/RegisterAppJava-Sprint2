@@ -23,7 +23,7 @@
                     <tr class="hidden">
                         <td>ID:</td>
                         <td>
-                            <input id="transactionEntryId" type="hidden" th:value"${!transactionEntry.isEmpty} ? ${transactionEntry.id} : ''" />
+                            <input id="transactionEntryId" type="hidden" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.id} : ''" />
                         </td>
                     </tr>
                     <tr class="hidden">
