@@ -17,7 +17,8 @@ function searchActionClick(event){
         return;
     }
     else {
-        document.getElementById("searchForm").submit();
+		document.getElementById("searchForm").action=getURL();
+		document.getElementById("searchForm").submit();
     }
 }
 function getSearchId(){
@@ -70,7 +71,7 @@ function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
 	window.location.assign(
-		"/transaction/addToCart/"
+		window.location + "/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
 
