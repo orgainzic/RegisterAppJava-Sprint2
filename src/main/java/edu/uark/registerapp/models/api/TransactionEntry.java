@@ -56,7 +56,7 @@ public class TransactionEntry extends ApiResponse {
         this.id = new UUID(0,0);
         this.transactionId = new UUID(0,0);
         this.productId = new UUID(0,0);
-        this.quantity = -1;
+        this.quantity = 0D;
         this.price = 0;
 
         this.setCreatedOn(LocalDateTime.now());
