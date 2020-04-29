@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import edu.uark.registerapp.commands.VoidCommandInterface;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
+import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,10 @@ public class RemoveProductFromTransaction implements VoidCommandInterface {
     @Transactional
     @Override
     public void execute() {
+        this.validateProperties();
+
         final Optional<TransactionEntryEntity> transactionEntryEntity =
-                this.transactionEntryRepository.findByTransactionIdAndProductId(
-                        this.transactionId,
-                        this.productId
-                );
+                this.transactionEntryRepository.findById(this.transactionEntryId);
         if (!transactionEntryEntity.isPresent()) { // No record with the associated transaction ID and product ID exists in the database
             throw new NotFoundException("TransactionEntry");
         }
@@ -28,18 +28,18 @@ public class RemoveProductFromTransaction implements VoidCommandInterface {
         this.transactionEntryRepository.delete(transactionEntryEntity.get());
     }
 
-    // Properties
-    private UUID transactionId;
-    public UUID getTransactionID() { return this.transactionId; }
-    public RemoveProductFromTransaction setTransactionId(final UUID transactionId) {
-        this.transactionId = transactionId;
-        return this;
+    // Helper Methods
+    private void validateProperties() {
+        if (this.transactionEntryId.equals(null)) {
+            throw new UnprocessableEntityException("transactionEntryId");
+        }
     }
 
-    private UUID productId;
-    public UUID getProductId() { return this.productId; }
-    public RemoveProductFromTransaction setProductId(final UUID productId) {
-        this.productId = productId;
+    // Properties
+    private UUID transactionEntryId;
+    public UUID getTransactionEntryId() { return transactionEntryId; }
+    public RemoveProductFromTransaction setTransactionEntryId(final UUID transactionEntryId) {
+        this.transactionEntryId = transactionEntryId;
         return this;
     }
 
