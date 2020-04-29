@@ -149,8 +149,8 @@ public class TransactionRouteController extends BaseRouteController {
 		addToTransaction.setTransactionId(transactionId);
 		addToTransaction.execute();
 
-		return new ApiResponse();
-		//return new RedirectView("http://localhost:8080/transaction/" + transactionId);	
+		//return new ApiResponse();
+		return new RedirectView("http://localhost:8080/transaction/" + transactionId);	
 	}
 
 	@RequestMapping(value = "/{transactionId}/details/{entryId}", method = RequestMethod.GET)
