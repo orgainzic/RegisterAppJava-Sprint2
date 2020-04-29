@@ -17,7 +17,8 @@ function searchActionClick(event){
         return;
     }
     else {
-        document.getElementById("searchForm").submit();
+		document.getElementById("searchForm").action=getURL();
+		document.getElementById("searchForm").submit();
     }
 }
 function getSearchId(){
