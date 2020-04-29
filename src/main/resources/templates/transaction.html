@@ -29,16 +29,37 @@
 			</div>
 			<br />
 			<br/>
-
-			<ul id="transactionEntry" class="transactionEntries">
-				<li th:each="transactionEntry : ${transactionEntries}">
-					<input type="hidden" name="transactionEntryId" th:value="${transactionEntry.id}" />
-					<!--<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" /> -->
-					<span class="transactionEntryProductIdDisplay" th:text="${transactionEntry.productId}">productId</span>
-					<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.price}">0</span>
-					<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.quantity}">0</span>
-				</li>
-			</ul>
+			<div>
+				<ul id="transactionEntry" class="transactionEntries">
+					<li th:each="transactionEntry : ${transactionEntries}">
+						<input type="hidden" name="transactionEntryId" th:value="${transactionEntry.id}" />
+						<!--<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" /> -->
+						<span class="transactionEntryProductIdDisplay" th:text="${transactionEntry.productId}">productId</span>
+						<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.price}">0</span>
+						<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.quantity}">0</span>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<br />
+			<div class="transactionSummaryWrapper">
+				<table class="transactionSummaryDetails">
+					<tbody>
+						<tr class="label">
+							<td>Items in Transaction:</td>
+							<td>
+								<input id="transactionItemsCount" type="text" th:value="${!transactionSummary.isEmpty} ? ${transactionSummary.count} : ''" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td class="label">Total Price:</td>
+							<td>
+								<input id="transactionSummaryPrice" type="text" th:value="${!transactionSummary.isEmpty} ? ${transactionSummary.price} : ''" readonly />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			
         </div>
 	</div>

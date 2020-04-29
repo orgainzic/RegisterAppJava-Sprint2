@@ -21,10 +21,13 @@ import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCo
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
 import edu.uark.registerapp.commands.transactions.TransactionEntryQuery;
+import edu.uark.registerapp.commands.transactions.TransactionSummaryQuery;
+import edu.uark.registerapp.commands.transactions.UpdateTransactionPrice;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.TransactionEntry;
+import edu.uark.registerapp.models.api.TransactionSummary;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
 
@@ -51,7 +54,12 @@ public class TransactionRouteController extends BaseRouteController {
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
 				
+				updatePrice.setTransactionId(transactionId);
+				updatePrice.execute();
+
+				summaryQuery.setTransactionId(transactionId);
 				queryEntries.setTransactionId(transactionId);
+
 				try {
 					modelAndView.addObject(
 						ViewModelNames.ENTRIES.getValue(),
@@ -64,6 +72,20 @@ public class TransactionRouteController extends BaseRouteController {
 					modelAndView.addObject(
 						ViewModelNames.ENTRIES.getValue(),
 						(new TransactionEntry[0]));
+				}
+
+				try {
+					modelAndView.addObject(
+						ViewModelNames.SUMMARY.getValue(),
+						summaryQuery.execute());
+				} catch (final Exception e) {
+					System.out.println(e.toString());
+					modelAndView.addObject(
+						ViewModelNames.ERROR_MESSAGE.getValue(),
+						e.getMessage());
+					modelAndView.addObject(
+						ViewModelNames.SUMMARY.getValue(),
+						(new TransactionSummary[0]));
 				}
 	
 		return modelAndView;
@@ -145,6 +167,7 @@ public class TransactionRouteController extends BaseRouteController {
 				new ModelAndView(ViewNames.ENTRY_DETAIL.getViewName()),
 				queryParameters);
 
+
 			querySpecificEntry.setTransactionEntryId(entryId);
 
 			final Optional<ActiveUserEntity> activeUserEntity =
@@ -198,4 +221,10 @@ public class TransactionRouteController extends BaseRouteController {
 
 	@Autowired
 	private TransactionEntryQuery querySpecificEntry;
+
+	@Autowired
+	private UpdateTransactionPrice updatePrice;
+
+	@Autowired
+	private TransactionSummaryQuery summaryQuery;
 }
