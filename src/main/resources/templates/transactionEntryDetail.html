@@ -50,7 +50,7 @@
 
         <div class="transactionEntryActionsWrapper" th:class="(not ${isElevatedUser} OR not ${#strings.isEmpty(errorMessage)}) ? hidden : ''">
             <br />
-            <div id="deleteActionContainer" th:class="${transactionEntry.isEmpty} ? hidden ? : ''">
+            <div id="deleteActionContainer" th:class="${transactionEntry.isEmpty} ? hidden : ''">
                 <button id="deleteButton" type="button" class="action">Delete</button>
                 <br />
                 <br />
