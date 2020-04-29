@@ -44,7 +44,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 		createTransaction.setCashierID(this.getCurrentUser(request).get().getEmployeeId());
 		UUID transactionId = createTransaction.execute().getId();
-	    return new RedirectView("http://localhost:8080/transaction/" + transactionId);
+	    return new RedirectView("https://orgainzic-register-app.herokuapp.com/transaction/" + transactionId);
 	}
 
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
@@ -150,7 +150,7 @@ public class TransactionRouteController extends BaseRouteController {
 		addToTransaction.execute();
 
 		//return new ApiResponse();
-		return new RedirectView("http://localhost:8080/transaction/" + transactionId);	
+		return new RedirectView("https://orgainzic-register-app.herokuapp.com/transaction/" + transactionId);	
 	}
 
 	@RequestMapping(value = "/{transactionId}/details/{entryId}", method = RequestMethod.GET)
