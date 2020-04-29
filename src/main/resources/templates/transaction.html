@@ -28,8 +28,8 @@
 					<input type="hidden" name="transactionEntryId" th:value="${transactionEntry.id}" />
 					<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" />
 					<span class="transactionEntryProductIdDisplay" th:text="${transactionEntry.productId}">productId</span>
-					<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.quantity}">0</span>
-					<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.createdOn}">0</span>
+					<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.price}">0</span>
+					<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.quantity}">0</span>
 				</li>
 			</ul>
 			
