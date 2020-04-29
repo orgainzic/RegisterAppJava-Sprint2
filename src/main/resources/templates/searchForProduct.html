@@ -20,9 +20,6 @@
 	</div>
 		
 	<div id="main" class="main">
-		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
-			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
-		</div>
 		<div class="searchWrapper">
 			<form id="searchForm" action="/transaction/search" method="POST">
 				<input type="text" id="searchProduct" name="searchProduct" placeholder="Search for a product">
