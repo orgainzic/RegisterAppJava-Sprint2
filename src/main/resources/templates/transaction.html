@@ -52,7 +52,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="label">Total Price:</td>
+							<td class="label">Total Price (&#36;):</td>
 							<td>
 								<input id="transactionSummaryPrice" type="text" th:value="${!transactionSummary.isEmpty} ? ${#numbers.formatDecimal(transactionSummary.price, 1, 'DEFAULT', 2, 'DEFAULT')} : ''" readonly />
 							</td>
