@@ -1,6 +1,7 @@
 package edu.uark.registerapp.controllers;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,8 @@ import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.TransactionEntry;
+import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import edu.uark.registerapp.models.enums.EmployeeClassification;
 
 @Controller
 @RequestMapping(value = "/transaction")
@@ -144,6 +147,21 @@ public class TransactionRouteController extends BaseRouteController {
 
 			querySpecificEntry.setTransactionEntryId(entryId);
 
+			final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
+			if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+			} else if (!this.isElevatedUser(activeUserEntity.get())) {
+				return this.buildNoPermissionsResponse(
+				ViewNames.PRODUCT_LISTING.getRoute());
+			}      
+
+			modelAndView.addObject(
+			ViewModelNames.IS_ELEVATED_USER.getValue(),
+			EmployeeClassification.isElevatedUser(
+			activeUserEntity.get().getClassification()));
+			
+				
 			try {
 				modelAndView.addObject(
 					ViewModelNames.ENTRY.getValue(),
