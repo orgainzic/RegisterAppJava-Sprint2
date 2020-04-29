@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/styles/master.css">
 	<link rel="stylesheet" type="text/css" href="/styles/transaction.css">
+	
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
@@ -26,7 +27,7 @@
 			<ul id="transactionEntry" class="transactionEntries">
 				<li th:each="transactionEntry : ${transactionEntries}">
 					<input type="hidden" name="transactionEntryId" th:value="${transactionEntry.id}" />
-					<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" />
+					<!--<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" /> -->
 					<span class="transactionEntryProductIdDisplay" th:text="${transactionEntry.productId}">productId</span>
 					<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.price}">0</span>
 					<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.quantity}">0</span>

@@ -7,14 +7,14 @@ div.transactionWrapper {
 	display: inline-block;
 }
 ​
-ul.products {
+.transactionEntries {
 	margin: 0 0 2em 0;
 	list-style-type: none;
 	padding: 0;
 	width: 15em;
 }
 ​
-ul.products > li {
+.transactionEntries li {
 	cursor: pointer;
 	background-color: #EEE;
 	margin: .5em;
@@ -24,10 +24,14 @@ ul.products > li {
 	text-align: left;
 }
 ​
-ul.products > li:hover {
+.transactionEntries li:hover {
 	color: #607D8B;
 	background-color: #DDD;
 	left: .1em;
+}
+
+a.button {
+	text-decoration: none;
 }
 ​
 button.action {

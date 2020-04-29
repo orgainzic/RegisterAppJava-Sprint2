@@ -6,10 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //  .addEventListener("click", checkoutActionClick);
     document.getElementById("searchForProductButton")
         .addEventListener("click", searchForProductClickHandler);
-    const searchProductElement =
-        getSearchProductElement();
-    searchProductElement.focus();
-    searchProductElement.select();
     for (let i = 0; i < transactionProductListElements.length; i++) {
 		transactionProductListElements[i].addEventListener("click", transactionClick);
 	}
@@ -60,7 +56,7 @@ function findClickedListItemElement(clickedTarget) {
 function transactionClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 	window.location.assign(
-		window.location + "/" + listItem.querySelector("input[name='productId'][type='hidden']").value);
+		window.location + "/" + listItem.querySelector("input[name='productId']").value);
 }
 
 //Checkout
