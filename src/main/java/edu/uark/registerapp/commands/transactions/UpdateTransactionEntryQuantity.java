@@ -22,7 +22,7 @@ public class UpdateTransactionEntryQuantity implements ResultCommandInterface<Tr
         this.validateProperties();
 
         Optional<TransactionEntryEntity> transactionEntryEntity =
-                this.transactionEntryRepository.findById(transactionEntryId);
+                this.transactionEntryRepository.findById(apiTransactionEntry.getId());
         if (!transactionEntryEntity.isPresent()) { // No record with the associated record Id was found in the database
             throw new NotFoundException("TransactionEntry");
         }
@@ -38,23 +38,12 @@ public class UpdateTransactionEntryQuantity implements ResultCommandInterface<Tr
 
     // Helper methods
     private void validateProperties() {
-        if (this.transactionEntryId.equals(null)) {
-            throw new UnprocessableEntityException("TransactionEntryID");
-        }
-
         if (this.apiTransactionEntry.equals(null)) {
             throw new UnprocessableEntityException("apiTransaction");
         }
     }
 
     // Properties
-    private UUID transactionEntryId;
-    public UUID getTransactionEntryId() { return transactionEntryId; }
-    public UpdateTransactionEntryQuantity setTransactionEntryId(final UUID transactionEntryId) {
-        this.transactionEntryId = transactionEntryId;
-        return this;
-    }
-
     private TransactionEntry apiTransactionEntry;
     public TransactionEntry getApiTransactionEntry() { return this.apiTransactionEntry; }
     public UpdateTransactionEntryQuantity setApiTransactionEntry(final TransactionEntry apiTransactionEntry) {
