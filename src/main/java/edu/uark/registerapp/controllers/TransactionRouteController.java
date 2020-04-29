@@ -19,13 +19,16 @@ import edu.uark.registerapp.commands.products.ProductQuery;
 import edu.uark.registerapp.commands.transactions.AddProductToTransaction;
 import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCode;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
+import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.Transaction;
+import edu.uark.registerapp.models.api.TransactionEntry;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
+import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 
 @Controller
 @RequestMapping(value = "/transaction")
@@ -49,6 +52,21 @@ public class TransactionRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.TRANSACTION.getViewName()),
 				queryParameters);
+				
+				queryEntries.setTransactionId(transactionId);
+				try {
+					modelAndView.addObject(
+						ViewModelNames.ENTRIES.getValue(),
+						queryEntries.execute());
+				} catch (final Exception e) {
+					System.out.println(e.toString());
+					modelAndView.addObject(
+						ViewModelNames.ERROR_MESSAGE.getValue(),
+						e.getMessage());
+					modelAndView.addObject(
+						ViewModelNames.ENTRIES.getValue(),
+						(new TransactionEntry[0]));
+				}
 	
 		return modelAndView;
 	}
@@ -109,18 +127,12 @@ public class TransactionRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
+		
+		addToTransaction.setApiProduct(searchById.setProductId(productId).execute());
+		addToTransaction.setTransactionId(transactionId);
+		addToTransaction.execute();
 
-		System.out.println();
-		System.out.println(transactionId);
-		System.out.println();
-		System.out.println(productId);
-
-		/*
-		searchById.setProductId(productId);
-		Product product = searchById.execute();
-		addToTransaction.set
-		*/
-		RedirectView redirect = new RedirectView("/" + transactionId);	
+		RedirectView redirect = new RedirectView("http://localhost:8080/transaction/" + transactionId);	
 		return redirect;
 	}
 
@@ -135,4 +147,10 @@ public class TransactionRouteController extends BaseRouteController {
 
 	@Autowired
 	private TransactionCreateCommand createTransaction;
+
+	@Autowired
+	private TransactionEntryRepository transactionRepo;
+
+	@Autowired
+	private TransactionEntriesQueriedByTransactionId queryEntries;
 }
