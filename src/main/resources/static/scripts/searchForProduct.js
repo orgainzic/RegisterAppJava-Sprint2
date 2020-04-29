@@ -68,7 +68,7 @@ function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
 	window.location.assign(
-		"/addToCart/"
+		"/transaction/addtoCart"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
 
