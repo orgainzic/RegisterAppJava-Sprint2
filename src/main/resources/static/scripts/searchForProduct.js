@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const searchProductListElements = document.getElementById("productsSearchedListing").children;
 	document.getElementById("searchButton")
         .addEventListener("click", searchActionClick);
-    //document.getElementById("purchaseButton")
-	  //  .addEventListener("click", purchaseActionClick);
-	for (let i = 0; i < searchProductListElements.length; i++) {
+    for (let i = 0; i < searchProductListElements.length; i++) {
 		searchProductListElements[i].addEventListener("click", productClick);
 	}
 });
@@ -68,7 +66,7 @@ function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
 	window.location.assign(
-		"/transaction/addtoCart"
+		"/transaction/addToCart"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
 
