@@ -138,7 +138,7 @@ public class TransactionRouteController extends BaseRouteController {
 	}
 
 	@RequestMapping(value = "/{transactionId}/search/{productId}", method = RequestMethod.GET)
-	public ApiResponse addToCart(
+	public RedirectView addToCart(
 		@PathVariable final UUID transactionId,
 		@PathVariable final UUID productId,
 		@RequestParam final Map<String, String> queryParameters,
