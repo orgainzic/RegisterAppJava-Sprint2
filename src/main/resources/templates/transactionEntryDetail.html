@@ -12,6 +12,11 @@
 </head>
 
 <body>
+
+    <div class="header">
+        <h1 class="primary-message">Transaction Entry Detail</h1>
+    </div>
+
     <div id="main" class="main">
         <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
             <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
@@ -28,20 +33,26 @@
                     </tr>
                     <tr class="hidden">
                         <td class="hidden">TransactionID:</td>
-                        <input id="transactionEntryTransactionId" type="hidden" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.transactionId} : ''" />
+                        <td>
+                            <input id="transactionEntryTransactionId" type="hidden" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.transactionId} : ''" />
+                        </td>
                     </tr>
                     <tr>
                         <td class="label">ProductID:</td>
-                        <input id="transactionEntryProductId" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.productId} : ''" readonly/>
+                        <td>
+                            <input id="transactionEntryProductId" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.productId} : ''" readonly/>
+                        </td>
                     </tr>
                     <tr>
                         <td class="label">Price:</td>
-                        <input id="transactionEntryPrice" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.price} : ''" readonly />
+                        <td>
+                            <input id="transactionEntryPrice" type="text" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.price} : ''" readonly />
+                        </td>
                     </tr>
                     <tr>
                         <td class="label">Quantity:</td>
                         <td>
-                            <input id="transactionEntryQuantity" type="number" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.quantity} : ''" class="update" th:disabled="not ${isElevatedUser}" />
+                           <input id="transactionEntryQuantity" type="number" th:value="${!transactionEntry.isEmpty} ? ${transactionEntry.quantity} : ''" class="update" th:disabled="not ${isElevatedUser}" />
                         </td>
                     </tr>
                 </tbody>
