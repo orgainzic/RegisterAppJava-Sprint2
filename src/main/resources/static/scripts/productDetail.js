@@ -49,6 +49,7 @@ function saveActionClick(event) {
 	const saveProductRequest = {
 		id: productId,
 		count: getProductCount(),
+		price: getProductPrice(),
 		lookupCode: getProductLookupCode()
 	};
 
@@ -85,6 +86,14 @@ function validateSave() {
 	if ((lookupCode == null) || (lookupCode.trim() === "")) {
 		displayError("Please provide a valid product lookup code.");
 		return false;
+	}
+
+	const price = getProductPrice();
+	if ((price == null) || isNaN(price)) {
+		displayError("Please provide a valid product price in cents.");
+		return false;
+	} else if (price < 0) {
+		displayError("Product price may not be negative");
 	}
 
 	const count = getProductCount();
@@ -171,5 +180,13 @@ function getProductCount() {
 }
 function getProductCountElement() {
 	return document.getElementById("productCount");
+}
+
+function getProductPriceElement() {
+	return document.getElementById("productPrice");
+}
+
+function getProductPrice() {
+	return Number(getProductPriceElement().value);
 }
 // End getters and setters

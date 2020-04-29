@@ -31,6 +31,8 @@ public class ProductRestController extends BaseRestController {
 		final HttpServletResponse response
 	) {
 
+		System.out.println(product.getPrice());
+
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(
 				request,
