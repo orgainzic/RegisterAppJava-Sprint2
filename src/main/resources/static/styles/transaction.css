@@ -29,6 +29,10 @@ div.transactionWrapper {
 	background-color: #DDD;
 	left: .1em;
 }
+
+a.button {
+	text-decoration: none;
+}
 ​
 button.action {
     margin: 0;
