@@ -32,7 +32,7 @@
 			<br />
 
 			<ul id="productsSearchedListing" class="products">
-				<li th:each="searchProduct : ${searchProducts}">
+				<li th:each="searchProduct : ${products}">
 					<input type="hidden" name="productId" th:value="${searchProduct.id}" />
 					<span class="productLookupCodeDisplay" th:text="${searchProduct.lookupCode}">lookupCode</span>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${searchProduct.count}">0</span>
