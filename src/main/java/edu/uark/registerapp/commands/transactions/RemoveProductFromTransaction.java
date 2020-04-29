@@ -17,10 +17,7 @@ public class RemoveProductFromTransaction implements VoidCommandInterface {
     @Override
     public void execute() {
         final Optional<TransactionEntryEntity> transactionEntryEntity =
-                this.transactionEntryRepository.findByTransactionIdAndProductId(
-                        this.transactionId,
-                        this.productId
-                );
+                this.transactionEntryRepository.findById(this.transactionEntryId);
         if (!transactionEntryEntity.isPresent()) { // No record with the associated transaction ID and product ID exists in the database
             throw new NotFoundException("TransactionEntry");
         }
@@ -29,17 +26,10 @@ public class RemoveProductFromTransaction implements VoidCommandInterface {
     }
 
     // Properties
-    private UUID transactionId;
-    public UUID getTransactionID() { return this.transactionId; }
-    public RemoveProductFromTransaction setTransactionId(final UUID transactionId) {
-        this.transactionId = transactionId;
-        return this;
-    }
-
-    private UUID productId;
-    public UUID getProductId() { return this.productId; }
-    public RemoveProductFromTransaction setProductId(final UUID productId) {
-        this.productId = productId;
+    private UUID transactionEntryId;
+    public UUID getTransactionEntryId() { return transactionEntryId; }
+    public RemoveProductFromTransaction setTransactionEntryId(final UUID transactionEntryId) {
+        this.transactionEntryId = transactionEntryId;
         return this;
     }
 
