@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //Search for Product
+function getURL(){
+	return window.location + "/search";
+}
+
 function searchActionClick(event){
     if (!validateSearch()) {
         return;
