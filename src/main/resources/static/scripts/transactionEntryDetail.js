@@ -3,6 +3,9 @@ let hideTransactionEntrySavedAlertTimer = undefined;
 document.addEventListener("DOMContentLoaded", () => {
     getTransactionEntryQuantityElement().addEventListener("keypress", transactionEntryQuantityKeypress);
 
+    document.getElementById("backButtonImage")
+        .addEventListener("click", backToTransactionsClick);
+
     getSaveActionElement().addEventListener("click", saveActionClick)
     getDeleteActionElement().addEventListener("click", deleteActionClick);
 });
@@ -17,6 +20,14 @@ function transactionEntryQuantityKeypress(event) {
     transactionEntryQuantityElement.focus();
     transactionEntryQuantityElement.select();
 }
+
+//Back to Transactions Page
+function backToTransactionsClick() {
+    let pathArray = window.location.pathname.split('/');
+            let transactionRedirectUrl = pathArray[0] + '/' + pathArray[1] + '/' + pathArray[2];
+            window.location.replace(transactionRedirectUrl);
+}
+//End to Transactions Page
 
 // Save
 function saveActionClick(event) {
