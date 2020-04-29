@@ -146,7 +146,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 			try {
 				modelAndView.addObject(
-					ViewModelNames.ENTRY_DETAILS.getValue(),
+					ViewModelNames.ENTRY.getValue(),
 					querySpecificEntry.execute());
 			} catch (final Exception e) {
 				System.out.println(e.toString());
@@ -154,7 +154,7 @@ public class TransactionRouteController extends BaseRouteController {
 					ViewModelNames.ERROR_MESSAGE.getValue(),
 					e.getMessage());
 				modelAndView.addObject(
-					ViewModelNames.ENTRY_DETAILS.getValue(),
+					ViewModelNames.ENTRY.getValue(),
 					(new TransactionEntry()));
 			}
 		
