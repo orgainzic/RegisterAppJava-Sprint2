@@ -121,7 +121,6 @@ function deleteActionClick(event) {
             // TODO: Check this URL (pathArray[0] may not work
             let pathArray = window.location.pathname.split('/');
             let deleteRedirectUrl = pathArray[0] + '/' + pathArray[1] + '/' + pathArray[2];
-            alert(deleteRedirectUrl);
             window.location.replace(deleteRedirectUrl);
         }
     });
