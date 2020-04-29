@@ -6,10 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //  .addEventListener("click", checkoutActionClick);
     document.getElementById("searchForProductButton")
         .addEventListener("click", searchForProductClickHandler);
-    const searchProductElement =
-        getSearchProductElement();
-    searchProductElement.focus();
-    searchProductElement.select();
     for (let i = 0; i < transactionProductListElements.length; i++) {
 		transactionProductListElements[i].addEventListener("click", transactionClick);
 	}
