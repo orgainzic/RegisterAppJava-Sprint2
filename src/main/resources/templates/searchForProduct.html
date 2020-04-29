@@ -20,9 +20,6 @@
 	</div>
 		
 	<div id="main" class="main">
-		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
-			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
-		</div>
 		<div class="searchWrapper">
 			<form id="searchForm" action="/transaction/search" method="POST">
 				<input type="text" id="searchProduct" name="searchProduct" placeholder="Search for a product">
@@ -35,10 +32,10 @@
 			<br />
 
 			<ul id="productsSearchedListing" class="products">
-				<li th:each="searchProduct : ${searchProducts}">
-					<input type="hidden" name="productId" th:value="${searchProducts.id}" />
-					<span class="productLookupCodeDisplay" th:text="${searchProducts.lookupCode}">lookupCode</span>
-					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${searchProducts.count}">0</span>
+				<li th:each="searchProduct : ${products}">
+					<input type="hidden" name="productId" th:value="${searchProduct.id}" />
+					<span class="productLookupCodeDisplay" th:text="${searchProduct.lookupCode}">lookupCode</span>
+					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${searchProduct.count}">0</span>
 				</li>
 			</ul>
 		</div>
@@ -50,7 +47,6 @@
     <div class="footer">
         <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
         <img id="cancelTransactionImage" src="/images/Cancel-Transaction.png" alt="Cancel Transaction" class="leftfooter" />
-        <img id="purchaseButton" src="/images/Purchase.png" alt="Complete Transaction" class="midfooter"/>
     </div> 
     
 </body>

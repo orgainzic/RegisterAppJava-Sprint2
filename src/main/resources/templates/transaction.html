@@ -22,27 +22,17 @@
 		<button id="searchForProductButton" type="button" class="action">Search for Product</button>
 		
 ​
-        <div>
-			<table id="transactionConfirmedProducts">
-				<tbody>
-					<tr> 
-						<td class="label">Product:</td>
-						<td>
-							<span class="searchedProductLookupCodeDisplay" th:text="${searchedProduct.lookupCode}">lookupCode</span>
-						</td>
-						<td class="label">Quantity:</td>
-						<td>
-							<input id="searchedProductSelectedQuantity" type="number" min="0" max="${searchedProduct.count}">
-						</td>
-					</tr>
-					<tr>
-						<td class="label">Total Number of Items:</td>
-						<td>
-							<span class="searchedProductTotalCount" th:text="sumOfQuantities()">Total</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+        <div id="transactionWrapper">
+			<ul id="transactionEntry" class="transactionEntries">
+				<li th:each="transactionEntry : ${transactionEntries}">
+					<input type="hidden" name="transactionEntryId" th:value="${transactionEntry.id}" />
+					<input type="hidden" name="transactionEntryTransactionId" th:value="${transactionEntry.transactionId}" />
+					<span class="transactionEntryProductIdDisplay" th:text="${transactionEntry.productId}">productId</span>
+					<br />&nbsp;&nbsp;<span class="transactionEntryPriceDisplay" th:text="${transactionEntry.count}">0</span>
+					<br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntry.createdOn}">0</span>
+				</li>
+			</ul>
+			
         </div>
 	</div>
 	<div class="footer">
