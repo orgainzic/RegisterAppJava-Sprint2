@@ -55,6 +55,11 @@ button.action:hover {
     background-color: #000000;
 }
 
+.transactionSummaryWrapper {
+	/*This could probably use edits to make it look better*/
+	display: inline-block;
+}
+
 img.leftfooter {
 	z-index: 1;
 	height: 50px;
