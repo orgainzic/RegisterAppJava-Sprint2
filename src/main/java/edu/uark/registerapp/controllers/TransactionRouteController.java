@@ -79,7 +79,6 @@ public class TransactionRouteController extends BaseRouteController {
 						ViewModelNames.SUMMARY.getValue(),
 						summaryQuery.execute());
 				} catch (final Exception e) {
-					System.out.println(e.toString());
 					modelAndView.addObject(
 						ViewModelNames.ERROR_MESSAGE.getValue(),
 						e.getMessage());
@@ -113,22 +112,16 @@ public class TransactionRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.SEARCH.getViewName()),
 				queryParameters);
-
-		System.out.println(queryParameters);
-
-		System.out.println(queryParameters.get("searchProduct"));
 		
 		searchByPartialLookup.setPartialLookupCode(queryParameters.get("searchProduct"));
 		
 		Product[] products = searchByPartialLookup.execute();
-		System.out.println(products);
 
 			try {
 				modelAndView.addObject(
 					ViewModelNames.PRODUCTS.getValue(),
 					products);
 			} catch (final Exception e) {
-				System.out.println(e.toString());
 				modelAndView.addObject(
 					ViewModelNames.ERROR_MESSAGE.getValue(),
 					e.getMessage());
