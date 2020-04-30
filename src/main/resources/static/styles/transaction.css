@@ -79,6 +79,7 @@ img.midfooter {
     text-decoration: none;
     display: inline-block;
 	cursor: pointer;
-	position: fixed;
+	/*position: fixed;*/
 	bottom: 20px;
+	left: 45%;
 }
