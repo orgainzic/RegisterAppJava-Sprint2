@@ -29,7 +29,7 @@ public class TransactionRestController extends BaseRestController {
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
-
+		
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(
 				request,
