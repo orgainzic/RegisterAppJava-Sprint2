@@ -28,3 +28,14 @@
 a.button {
 	text-decoration: none;
 }
+
+img.leftfooter {
+	z-index: 1;
+	height: 50px;
+    text-decoration: none;
+    display: inline-block;
+	cursor: pointer;
+	position: fixed;
+	left: 20px;
+	bottom: 20px;
+}
