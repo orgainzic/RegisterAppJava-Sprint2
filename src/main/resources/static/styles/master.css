@@ -138,6 +138,7 @@ table tbody tr:last-child {
 }
 table td, table th {
 	text-align: left;
+	text-overflow: 25px;
 }
 table td.l, table th.l {
 	text-align: right;
