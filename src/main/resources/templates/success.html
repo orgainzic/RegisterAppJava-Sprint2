@@ -20,15 +20,40 @@
         <div class="successWrapper">   
             <br />
             <br/>
-                <ul id="transaction" class="transaction">
-                    <li>
-                        <span class="transactionTransactionId" th:value="${transaction.id}">id</span>
-                        <br />&nbsp;&nbsp;<span class="transactionCashierId" th:value="${transaction.cashierId}">0</span>
-                        <br />&nbsp;&nbsp;<span class="transactionTotal" th:text="${transaction.total}">0.00</span>
-                        <br />&nbsp;&nbsp;<span class="transactionType" th:text="${transaction.type}">0</span>
-                        <br />&nbsp;&nbsp;<span class="transactionReferenceId" th:text="${transaction.referenceId}">0</span>
-                    </li>
-                </ul>
+                <table id="transaction">
+                    <tbody>
+                        <tr>
+                            <td class="label">Transaction ID:</td>
+                            <td>
+                                <input id="transactionId" type="text" th:value="${!transaction.isEmpty} ? ${transaction.id} : ''" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Cashier ID:</td>
+                            <td>
+                                <input id="transactionCashierId" type="text" th:value="${!transaction.isEmpty} ? ${transaction.cashierId} : ''" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Transaction Type:</td>
+                            <td>
+                                <input id="transactionType" type="number" th:value="${!transaction.isEmpty} ? ${transaction.type} : ''" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Transaction Reference:</td>
+                            <td>
+                                <input id="transactionReferenceId" type="text" th:value="${!transaction.isEmpty} ? ${transaction.referenceId} : ''" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Transaction Total (&dollar;):</td>
+                            <td>
+                                <input id="transactionTotal" type="text" th:value="${!transaction.isEmpty} ? ${#numbers.formatDecimal(transaction.total / 100.00, 1, 'DEFAULT', 2, 'DEFAULT')} : ''" readonly />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
         </div>
     </div>
     <div class="footer">
