@@ -54,13 +54,13 @@ public class TransactionSubmission implements ResultCommandInterface<Transaction
 
     private void updateProductQuantities() {
         for (TransactionEntryEntity transactionEntryEntity :
-        this.transactionEntryRepository.findByTransactionId(this.transactionId)) {
+                this.transactionEntryRepository.findByTransactionId(this.transactionId)) {
             Optional<ProductEntity> productEntity =
                     this.productRepository.findById(transactionEntryEntity.getProductId());
             if (!productEntity.isPresent()) { // No record with the associated record Id exists in the database
                 throw new NotFoundException("Product");
             }
-            productEntity.get().setCount(productEntity.get().getCount() - (int)(transactionEntryEntity.getQuantity()));
+            productEntity.get().setCount(productEntity.get().getCount() - (int)(Math.round(transactionEntryEntity.getQuantity())));
 
             this.productRepository.save(productEntity.get());
         }
