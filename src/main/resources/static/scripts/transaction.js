@@ -15,16 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Cancel Transaction
 function cancelTransactionActionClickHandler() {
-	ajaxDelete("/api/cancelTransaction", (callbackResponse) => {
-		if ((callbackResponse.data != null)
-			&& (callbackResponse.data.redirectUrl != null)
-			&& (callbackResponse.data.redirectUrl !== "")) {
-	
-			window.location.replace(callbackResponse.data.redirectUrl);
-		} else {
-			window.location.replace("/mainMenu");
-		}
-	});
+     window.location.replace(window.location + "/cancel");		
 }
 
 //SearchForProduct
