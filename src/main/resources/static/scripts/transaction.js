@@ -61,7 +61,7 @@ function transactionClick(event) {
 
 //Checkout
 function checkoutActionClick() {
-    window.location + "/checkout";
+   window.location.replace(window.location + "/checkout");
 }
 
 
