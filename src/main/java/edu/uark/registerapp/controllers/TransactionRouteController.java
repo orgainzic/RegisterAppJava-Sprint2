@@ -27,6 +27,7 @@ import edu.uark.registerapp.commands.transactions.TransactionSummaryQuery;
 import edu.uark.registerapp.commands.transactions.UpdateTransactionPrice;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
+import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.Transaction;
 import edu.uark.registerapp.models.api.TransactionEntry;
@@ -43,7 +44,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 		createTransaction.setCashierID(this.getCurrentUser(request).get().getEmployeeId());
 		UUID transactionId = createTransaction.execute().getId();
-	    return new RedirectView("http://localhost:8080/transaction/" + transactionId);
+	    return new RedirectView("https://orgainzic-register-app.herokuapp.com/transaction/" + transactionId);
 	}
 
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
@@ -148,7 +149,8 @@ public class TransactionRouteController extends BaseRouteController {
 		addToTransaction.setTransactionId(transactionId);
 		addToTransaction.execute();
 
-		return new RedirectView("http://localhost:8080/transaction/" + transactionId);	
+		//return new ApiResponse();
+		return new RedirectView("https://orgainzic-register-app.herokuapp.com/transaction/" + transactionId);	
 	}
 
 	@RequestMapping(value = "/{transactionId}/details/{entryId}", method = RequestMethod.GET)
