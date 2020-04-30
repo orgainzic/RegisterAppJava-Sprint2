@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import edu.uark.registerapp.commands.products.ProductQuery;
 import edu.uark.registerapp.commands.transactions.AddProductToTransaction;
 import edu.uark.registerapp.commands.transactions.ProductSearchByPartialLookupCode;
+import edu.uark.registerapp.commands.transactions.TransactionCancel;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQueriedByTransactionId;
 import edu.uark.registerapp.commands.transactions.TransactionEntryQuery;
@@ -205,7 +206,6 @@ public class TransactionRouteController extends BaseRouteController {
 		final HttpServletRequest request
 	) {
 		submitTransaction.setTransactionId(transactionId);
-		submitTransaction.execute();
 
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
@@ -213,12 +213,11 @@ public class TransactionRouteController extends BaseRouteController {
 				queryParameters);
 		
 		
-		Transaction transaction = submitTransaction.execute();
 
 			try {
 				modelAndView.addObject(
 					ViewModelNames.SUCCESS.getValue(),
-					transaction);
+					submitTransaction.execute());
 			} catch (final Exception e) {
 				modelAndView.addObject(
 					ViewModelNames.ERROR_MESSAGE.getValue(),
@@ -227,8 +226,19 @@ public class TransactionRouteController extends BaseRouteController {
 					ViewModelNames.SUCCESS.getValue(),
 					(new Transaction[0]));
 			}
-			
+
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/{transactionId}/cancel", method = RequestMethod.GET)
+	public RedirectView cancel(
+		@PathVariable final UUID transactionId,
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+		cancelTransaction.setTransactionId(transactionId);
+		cancelTransaction.execute();
+		return new RedirectView("/mainMenu");
 	}
 
 
@@ -258,4 +268,7 @@ public class TransactionRouteController extends BaseRouteController {
 
 	@Autowired
 	private TransactionSubmission submitTransaction;
+
+	@Autowired
+	private TransactionCancel cancelTransaction;
 }
