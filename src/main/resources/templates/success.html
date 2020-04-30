@@ -20,8 +20,8 @@
         <div class="successWrapper">   
             <br />
             <br/>
-                <ul id="transaction" class="transactions">
-                    <li th:each="transaction : ${transactions}">
+                <ul id="transaction" class="transaction">
+                    <li>
                         <input type="hidden" name="transactionTransactionId" th:value="${transaction.id}" />
                         <span class="transactionCashierId" th:value="${transaction.cashierId}">cashier</span>
                         <br />&nbsp;&nbsp;<span class="transactionTotal" th:text="${transaction.total}">0.00</span>
