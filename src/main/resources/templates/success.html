@@ -22,8 +22,8 @@
             <br/>
                 <ul id="transaction" class="transaction">
                     <li>
-                        <input type="hidden" name="transactionTransactionId" th:value="${transaction.id}" />
-                        <span class="transactionCashierId" th:value="${transaction.cashierId}">cashier</span>
+                        <span class="transactionTransactionId" th:value="${transaction.id}">id</span>
+                        <br />&nbsp;&nbsp;<span class="transactionCashierId" th:value="${transaction.cashierId}">0</span>
                         <br />&nbsp;&nbsp;<span class="transactionTotal" th:text="${transaction.total}">0.00</span>
                         <br />&nbsp;&nbsp;<span class="transactionType" th:text="${transaction.type}">0</span>
                         <br />&nbsp;&nbsp;<span class="transactionReferenceId" th:text="${transaction.referenceId}">0</span>
