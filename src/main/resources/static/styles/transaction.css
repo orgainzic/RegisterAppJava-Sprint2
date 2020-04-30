@@ -1,3 +1,18 @@
+.nav {
+    background-color: #ffffff;
+    color: #000000;
+    list-style: none;
+	padding: 0 0 0 0;
+	margin-top: 0;
+}
+
+.logo {
+	font-family: fantasy;
+	color: rgb(5, 133, 15);
+	font-size: xx-large;
+    font-weight: 200;
+}
+
 .transactionWrapper {
 	display: inline-block;
 }
@@ -13,8 +28,7 @@
 	cursor: pointer;
 	background-color: #EEE;
 	position: 50%;
-	/*margin: .5em;
-	padding: .3em;*/
+	margin: .5em;
 	height: 4em;
 	width: 22em;
 	border-radius: 4px;
@@ -81,5 +95,5 @@ img.midfooter {
 	cursor: pointer;
 	/*position: fixed;*/
 	bottom: 20px;
-	left: 45%;
+	left: 44.3%;
 }

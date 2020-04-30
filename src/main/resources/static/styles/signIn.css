@@ -1,6 +1,27 @@
+.nav {
+    background-color: #ffffff;
+    color: #000000;
+    height: 148px;
+    list-style: none;
+    padding: 5px 0 0 0;
+    background-image: url(Banner.jpg);
+}
+
 .logo {
 	font-family: fantasy;
 	color: rgb(5, 133, 15);
 	font-size: xx-large;
     font-weight: 200;
+}
+
+.banner {
+    width: 100%;
+    height: 148px;
+    display: block;
+}
+
+.banner > .banner-image {
+    width: 100%;
+    height: 148px;
+    display: block;
 }
