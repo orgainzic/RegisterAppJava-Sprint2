@@ -22,7 +22,10 @@ public class AddProductToTransaction implements ResultCommandInterface<Transacti
         Optional<TransactionEntryEntity> existingTransactionEntryForProduct =
                 this.transactionEntryRepository.findByTransactionIdAndProductId(this.transactionId, this.apiProduct.getId());
         if (existingTransactionEntryForProduct.isPresent()) { // this product already exists in the cart
-            throw new ConflictException("ProductId & TransactionId");
+            // The commented out portion is the proper way to handle this... but for quick work around...
+            // throw new ConflictException("ProductId & TransactionId");
+            this.setApiTransactionEntry(new TransactionEntry());
+            return this.apiTransactionEntry;
         }
 
         // Create a new ENTITY object from the API object details
