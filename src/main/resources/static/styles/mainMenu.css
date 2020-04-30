@@ -1,9 +1,11 @@
+
 .nav {
+	margin-top: 0;
     background-color: #ffffff;
     color: #000000;
     height: 148px;
     list-style: none;
-    padding: 5px 0 0 0;
+    padding: 0 0 0 0;
     background-image: url(Banner.jpg);
     background-size: cover;
     width: auto;

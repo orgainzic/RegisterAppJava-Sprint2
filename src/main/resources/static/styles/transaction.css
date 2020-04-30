@@ -1,3 +1,26 @@
+.body{
+	margin-top: 0;
+}
+
+.nav {
+	margin-top: 0;
+    background-color: #ffffff;
+    color: #000000;
+    height: 148px;
+    list-style: none;
+    padding: 0 0 0 0;
+    background-image: url(Banner.jpg);
+    background-size: cover;
+    width: auto;
+}
+
+.logo {
+	font-family: fantasy;
+	color: rgb(5, 133, 15);
+	font-size: xx-large;
+    font-weight: 200;
+}
+
 .transactionWrapper {
 	display: inline-block;
 }
@@ -12,8 +35,8 @@
 .transactionEntries li {
 	cursor: pointer;
 	background-color: #EEE;
+	position: 50%;
 	margin: .5em;
-	padding: .3em;
 	height: 4em;
 	width: 22em;
 	border-radius: 4px;
@@ -78,6 +101,7 @@ img.midfooter {
     text-decoration: none;
     display: inline-block;
 	cursor: pointer;
-	position: fixed;
+	/*position: fixed;*/
 	bottom: 20px;
+	left: 44.3%;
 }
