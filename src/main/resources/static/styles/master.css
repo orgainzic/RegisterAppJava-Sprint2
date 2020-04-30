@@ -3,16 +3,6 @@ div.header {
 	text-align: right;
 }
 
-body{
-	margin: 0;
-	padding: 0;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-.logo {
-	color: rgb(5, 133, 15);
-}
-
 div.main {
 	padding-top: 0px;
 	text-align: center
