@@ -1,6 +1,7 @@
 package edu.uark.registerapp.commands.transactions;
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
+import edu.uark.registerapp.commands.exceptions.ConflictException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.TransactionEntry;
@@ -9,6 +10,7 @@ import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,6 +18,12 @@ public class AddProductToTransaction implements ResultCommandInterface<Transacti
     @Override
     public TransactionEntry execute() {
         this.validateProperties();
+
+        Optional<TransactionEntryEntity> existingTransactionEntryForProduct =
+                this.transactionEntryRepository.findByTransactionIdAndProductId(this.transactionId, this.apiProduct.getId());
+        if (existingTransactionEntryForProduct.isPresent()) { // this product already exists in the cart
+            throw new ConflictException("ProductId & TransactionId");
+        }
 
         // Create a new ENTITY object from the API object details
         // We assume only quantity of 1 is initially added to Transaction.. Can be updated in cart
