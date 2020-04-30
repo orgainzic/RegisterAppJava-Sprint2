@@ -1,11 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const searchProductListElements = document.getElementById("productsSearchedListing").children;
 	document.getElementById("searchButton")
-        .addEventListener("click", searchActionClick);
+		.addEventListener("click", searchActionClick);
+	document.getElementById("backButtonImage")
+        .addEventListener("click", backToTransactionsClick);
     for (let i = 0; i < searchProductListElements.length; i++) {
 		searchProductListElements[i].addEventListener("click", productClick);
 	}
 });
+
+//Back to Transactions Page
+function backToTransactionsClick() {
+    let pathArray = window.location.pathname.split('/');
+            let transactionRedirectUrl = pathArray[0] + '/' + pathArray[1] + '/' + pathArray[2];
+            window.location.replace(transactionRedirectUrl);
+}
+//End to Transactions Page
 
 //Search for Product
 function getURL(){
